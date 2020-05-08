@@ -1,3 +1,9 @@
+<?php
+
+include(__DIR__ . '/inc/phraseStore.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -10,6 +16,7 @@
 	</head>
 
 	<body>
+		<?php var_dump($phrases); ?>
 		<div class="main-container">
 			<h2 class="header">Phrase Hunter</h2>
             <form action="play.php">
