@@ -1,5 +1,8 @@
 <?php
 
+// include the data store
+require_once(__DIR__ . '/phraseStore.php');
+
 /**
  * The config.php file is the first step in setting up the autoloader.
  * Use this file for all the shared functionality needed throughout the application

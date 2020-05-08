@@ -5,18 +5,18 @@
  * Methods for data source interaction.
  */
 
-interface RepositoryInterface {
+interface RepoInterface {
 
     /**
      * Retrieve all entries from your data source (e.g. table, array, json object)
-     * @param $entity The entity source of your data 
+     * No parameters to make it easy to dump all records if desired in the implementing class.
      */
 
-    public function getAll($dataEntity);
+    public function getAll();
 
     /**
      * Retrieve a specific result set from your data store
-     * @param $entity The entity source of your data
+     * @param $dataEntity The entity source of your data
      * @param $id Data field value to filter your result set on
      * @param $field The data field to filter your result set on 
      */

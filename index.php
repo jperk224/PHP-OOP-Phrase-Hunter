@@ -3,6 +3,12 @@
 require_once(__DIR__ . '/inc/config.php');
 require_once(__DIR__ . './views/header.php');
 
+$testPhrases = new ArrayRepo($phrases);
+var_dump($testPhrases->getAll());
+echo "****************************************************";
+var_dump($testPhrases->getAll("difficulty"));
+
+
 ?>
 
 <div class="main-container">

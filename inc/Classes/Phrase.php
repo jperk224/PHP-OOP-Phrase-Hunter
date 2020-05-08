@@ -5,7 +5,7 @@
  * Handle phrases to be used as game puzzles.
  */
 
-class Phrase implements RepositoryInterface {
+class Phrase {
 
     // class properties
     // private access modifiers promote encapsulation
