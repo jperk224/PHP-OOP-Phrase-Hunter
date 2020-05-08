@@ -1,6 +1,7 @@
 <?php
 
 include(__DIR__ . '/inc/phraseStore.php');
+$testPhrase = new Phrase();
 
 ?>
 
