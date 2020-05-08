@@ -1,5 +1,6 @@
 <?php
 
+include(__DIR__ . '/inc/config.php');
 include(__DIR__ . '/inc/phraseStore.php');
 $testPhrase = new Phrase();
 
