@@ -44,3 +44,5 @@ function autoloader($className) {
  */
 
  spl_autoload_register("autoloader");
+
+$gamePhrases = new ArrayRepo($phrases);
