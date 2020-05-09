@@ -48,14 +48,15 @@ class ArrayRepo implements RepoInterface {
 
     /**
      * Retrieve a specific result set from the array
+     * Returns first matching record value
      * @param $array The array source of your data
      * @param $id Data field value to filter your result set on
      * @param $field The data field to filter your result set on 
      */
 
-    public function getRecord($dataEntity, $id, $field) {
+    public function getRecord($value, $field = null) {
 
-
+        return $this->getAll($value, $field)[0];
 
     }
 

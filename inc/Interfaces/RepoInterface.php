@@ -16,11 +16,10 @@ interface RepoInterface {
 
     /**
      * Retrieve a specific result set from your data store
-     * @param $dataEntity The entity source of your data
-     * @param $id Data field value to filter your result set on
-     * @param $field The data field to filter your result set on 
+     * @param $value Data field value to filter your result set on
+     * @param $field Data field to filter your result set on (optional)
      */
 
-    public function getRecord($dataEntity, $id, $field);
+    public function getRecord($value, $field = null);
 
 }
