@@ -10,24 +10,28 @@ class Phrase {
     // class properties
     // private access modifiers promote encapsulation
     private $currentPhrase;             // current puzzle phrase
-    private $selected = array();        // holds user guesses
+    private $selected = array();        // user letter guesses
+    private $phrases;                   // collection of phrases
 
     /**
      * Class constructor.
      * If the phrase is not passed in, a random phrase is selected.
+     * Converts phrases to all upper case to render 'Wheel of Fortune' style
+     * and eliminate case-sensitivity for user guesses.
      * @param $phraseArray The array of phrases to select from randomly
      * @param $phrase The phrase for the puzzle (optional)
      * @param $selected The array of user guesses (optional)
      */
-    public function __construct($phraseArray, $phrase = null, $selected = null) {
-        
+    public function __construct(ArrayRepo $phrases, $phrase = null, $selected = null) {
+
+        $this->phrases = $phrases->getAll();
+
         if(isset($phrase)) {
-            $this->currentPhrase = $phrase;
+            $this->currentPhrase = strtoupper($phrase);
         }
         else {
-            $this->currentPhrase = $this->getRandomPhrase($phraseArray);
+            $this->currentPhrase = strtoupper($this->phrases[array_rand($this->phrases)]["phrase"]);
         }
-
         if(isset($selected)) {
             $this->selected = $selected;
         }
@@ -53,14 +57,19 @@ class Phrase {
     }
 
     public function setSelected($guess) {
-        $guess = strtolower($guess);
+        $guess = strtoupper($guess);
         $this->selected[] = $guess;
         return;
     }
 
     // other methods
 
-    // Get a random phrase- don't forget to include difficulty if/where applicable
+    /**
+     * Turn the phrase into an array to render in the UI
+     */
+    public function splitPhrase() {
+        return str_split($this->currentPhrase);
+    }
 
     /**
      * addPhraseToDisplay(): Builds the HTML for the letters of the phrase. 
@@ -76,18 +85,4 @@ class Phrase {
      * checkLetter(): checks to see if a letter matches a letter in the phrase. 
      * Accepts a single letter to check against the phrase. Returns true or false.
      */
-
-
-    /**
-     * Get a random phrase from the data store.
-     * User has option to select difficulty level.
-     * @param $phraseArray An associative array to pull a random phrase from
-     */
-
-    public function getRandomPhrase($phraseArray) {
-        
-        return $phraseArray[array_rand($phraseArray)]["phrase"];
-
-    }
-
 }

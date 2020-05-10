@@ -9,11 +9,20 @@ class Game {
 
     // class properties
     // private access modifiers promote encapsulation
-    private $phrase;        // an instance of the Phrase class to use with the game
-    private $lives;         // an integer for the number of wrong chances to guess the phrase
+    private $phrase;                    // an instance of the Phrase class to use with the game
+    private $lives;                     // an integer for the number of wrong chances to guess the phrase
 
-    // constructor
+    /**
+     * Class constructor.
+     * Instantiate a new Game instance.
+     * @param $phrase The phrase for the puzzle (must be of type Phrase)
+     */
+    public function __construct(Phrase $phrase) {
+        
+        $this->phrase = $phrase;
+        $this->lives = 5;               // current rules, user has 5 wrong attempts before 'game over' 
 
+    }
 
     // getters
 

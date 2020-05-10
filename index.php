@@ -3,8 +3,6 @@
 require_once(__DIR__ . '/inc/config.php');
 require_once(__DIR__ . './views/header.php');
 
-$testPhrase = new Phrase($gamePhrases->getAll());
-echo $testPhrase->getCurrentPhrase();
 
 ?>
 
