@@ -18,7 +18,8 @@ class Phrase {
      * If the phrase is not passed in, a random phrase is selected.
      * Converts phrases to all upper case to render 'Wheel of Fortune' style
      * and eliminate case-sensitivity for user guesses.
-     * @param $phraseArray The array of phrases to select from randomly
+     * @param $phraseArray The array of phrases to select from randomly 
+     * (implementing this way is cleaner than housing the entire phrase array in the class)
      * @param $phrase The phrase for the puzzle (optional)
      * @param $selected The array of user guesses (optional)
      */
