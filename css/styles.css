@@ -118,17 +118,15 @@ input[type=submit].correct {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content Box */
 .modal-content {
   background-color: var(--color-neutral-light);
   margin: 15% auto; /* 25% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  border: 1px solid var(--color-neutral-light);
+  width: 82%; 
   border-radius: 5px; /* add slight curvature to modal corners */
 }
 
-/* the close button */
 .close {
   color: var(--color-neutral);
   float: right;
@@ -136,10 +134,18 @@ input[type=submit].correct {
   font-weight: bold;
 }
 
-/* effects when bringing the close button into focus */
 .close:hover,
 .close:focus {
   cursor: pointer;
+}
+
+#rules-modal {
+  text-align: center;
+}
+
+#rules-modal p {
+  margin: 5px auto;
+  font-size: .90em;
 }
 
 /* Phrase */
@@ -263,7 +269,10 @@ input[type=submit].correct {
 
 @media screen and (min-width: 768px) {
 
-  
+/* Modals */
+.modal-content {
+  width: 70%;
+}  
 
 }
 
@@ -271,9 +280,10 @@ input[type=submit].correct {
 
 @media screen and (min-width: 960px) {
 
-/* Modal Content */
+/* Modals */
 .modal-content {
   margin: 10% auto; /* 25% from the top and centered */
+  width: 60%;
 }
 
 }

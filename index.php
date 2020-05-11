@@ -21,10 +21,18 @@ require_once(__DIR__ . './views/header.php');
 	<!-- adapted from W3 Schools 'How to Create a Modal Box' -->
 	<!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
 	<div id="rules-modal" class="modal-container">
-		<div class="modal-content">
+		<?php renderRules($numberOfGuesses); ?>
+		<!-- <div class="modal-content">
 			<span class="close" id="rules-close">&times;</span>
-			<p>RULES... RULES...</p>
-		</div>
+			<h4>Phrase Hunter Rules</h4>
+			<ul>
+				<li>Guess all the letters in a hidden, random phrase!</li>
+				<li>Use the onscreen keyboard.  Letters can only be guessed once.</li>
+				<li>Can you get the phrase before  wrong guesses?</li> 
+			</ul>
+			<h5>Enjoy!</h5>
+			<button class="form-buttons">Got it!</button>
+		</div> -->
 	</div> <!-- end rules modal -->
 </main>
 

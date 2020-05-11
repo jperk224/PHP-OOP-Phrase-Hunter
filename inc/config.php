@@ -3,6 +3,9 @@
 // include the data store
 require_once(__DIR__ . '/phraseStore.php');
 
+// include php functions
+require_once(__DIR__ . '/functions.php');
+
 /**
  * The config.php file is the first step in setting up the autoloader.
  * Use this file for all the shared functionality needed throughout the application
@@ -46,3 +49,4 @@ function autoloader($className) {
  spl_autoload_register("autoloader");
 
 $gamePhrases = new ArrayRepo($phrases);
+$numberOfGuesses = 5;

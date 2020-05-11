@@ -13,7 +13,9 @@ $("#rules-close").click(function(e) {
 });
 
 // close the rules modal if the 'Got it' button is clicked
-
+$("#rules-close-button").click(function(e) {
+    $("#rules-modal").hide();
+});
 
 // close the rules modal if the user clicks anywhere outside the modal
 $(".modal-container").click(function(e) {
