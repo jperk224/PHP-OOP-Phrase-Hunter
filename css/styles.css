@@ -3,7 +3,7 @@
 
 /* Variables */
 
-:root {
+:root { /*html selector with higher specificity */
   --color-win: #78CF82;
   --color-lose: #D94545;
   --color-start: #5b85b7;
@@ -19,7 +19,7 @@
 /* main */
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box;   /* include border and padding in element height and width */
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -66,7 +66,7 @@ input[type=submit].correct {
   background-color: var(--color-win);
 }
 
-#btn__reset {
+.form-buttons {
 	width: 200px;
 	margin: 0 auto;
 }
@@ -74,10 +74,15 @@ input[type=submit].correct {
 .main-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   height: 100%;
   max-height: 900px;
   text-align: center;
+}
+
+.main-container h2,
+.main-container form {
+  margin-bottom: 20px;
 }
 
 .section {
@@ -209,4 +214,22 @@ input[type=submit].correct {
 
 .lose a {
   color: var(--color-lose);
+}
+
+/***** Media Queries *****/
+
+/***** Tablets *****/
+
+@media screen and (min-width: 768px) {
+
+  
+
+}
+
+/***** Full Screen *****/
+
+@media screen and (min-width: 960px) {
+
+
+
 }
