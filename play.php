@@ -18,6 +18,8 @@ var_dump($testPhrase->splitPhrase());
     </div>
 </div>
 
-</body>
+<?php 
 
-</html>
+require_once(__DIR__ . './views/footer.php');
+
+?>

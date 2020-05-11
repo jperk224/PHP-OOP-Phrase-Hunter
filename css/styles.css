@@ -68,7 +68,7 @@ input[type=submit].correct {
 
 .form-buttons {
 	width: 200px;
-	margin: 0 auto;
+	margin: 5px auto;
 }
 
 .main-container {
@@ -100,6 +100,47 @@ input[type=submit].correct {
   color: #3a3f58;
 }
 
+
+/* Modals */
+
+.modal-container {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* The below colors give a cascading shadow effect over the entire page
+    to bring the focus to the modal */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content Box */
+.modal-content {
+  background-color: var(--color-neutral-light);
+  margin: 15% auto; /* 25% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 5px; /* add slight curvature to modal corners */
+}
+
+/* the close button */
+.close {
+  color: var(--color-neutral);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* effects when bringing the close button into focus */
+.close:hover,
+.close:focus {
+  cursor: pointer;
+}
 
 /* Phrase */
 
@@ -230,6 +271,9 @@ input[type=submit].correct {
 
 @media screen and (min-width: 960px) {
 
-
+/* Modal Content */
+.modal-content {
+  margin: 10% auto; /* 25% from the top and centered */
+}
 
 }
