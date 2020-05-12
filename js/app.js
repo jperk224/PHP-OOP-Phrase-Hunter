@@ -31,3 +31,9 @@ $("#game-start").click(function(e) {
 });
 
 // play.php
+
+// toggle hamburger <ul> in mobile view
+// jQuery toggle() did not play nice with the css display, so conditional is used
+$("#hamburger").click(function(e) {
+    $("#hamburger-menu").toggle();
+});

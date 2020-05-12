@@ -16,6 +16,46 @@
   --transition: all .2s ease-in-out;
 }
 
+/***** Header *****/
+
+header {
+  text-align: center;
+  padding-top: 5px;
+  display: none;        /* remove for mobile view */
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+/***** Nav Bar *****/
+
+.navbar {
+  background-color: var(--color-neutral);
+  color: var(--color-neutral-light);
+  padding-right: 5px;
+  /* display: flex;
+  flex-direction: row-reverse;
+  align-items: center; */
+  text-align: right;
+  position: fixed;
+  top: 5px;
+  width: 95%;
+  border-radius: 5px;
+}
+
+#hamburger-menu {
+  display: none;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#hamburger-menu li {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 /* main */
 
 * {

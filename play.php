@@ -4,46 +4,58 @@ require_once(__DIR__ . '/inc/config.php');
 require_once(__DIR__ . './views/header.php');
 
 // filter $gamePhrases based on difficulty level selected
-if(isset($_GET["difficulty"])) {
-    if($_GET["difficulty"] == "easy") {
-        $array = $gamePhrases->getAll("1 - easy", "difficulty");    
+if (isset($_GET["difficulty"])) {
+    if ($_GET["difficulty"] == "easy") {
+        $array = $gamePhrases->getAll("1 - easy", "difficulty");
         //TODO: if the phrase has already been used, pluck it out before choosing one at random
         $phrase = $array[array_rand($array)]["phrase"];
-    }
-    else if($_GET["difficulty"] == "medium") {
+    } else if ($_GET["difficulty"] == "medium") {
         $array = $gamePhrases->getAll("2 - medium", "difficulty");
         $phrase = $array[array_rand($array)]["phrase"];
-    }
-    else if($_GET["difficulty"] == "hard") {
+    } else if ($_GET["difficulty"] == "hard") {
         $array = $gamePhrases->getAll("3 - hard", "difficulty");
         // with hard, we need the source for hints
         $phrase = $array[array_rand($array)];
         $source = $phrase["source"];
         $phrase = $phrase["phrase"];
-    }
-    else {  // player chose random, pull the entire phrase array and create a random phrase object
+    } else {  // player chose random, pull the entire phrase array and create a random phrase object
         $array = $gamePhrases->getAll();
         // grab the source if the randomly chosen phrase is hard difficulty
         $phrase = $array[array_rand($array)];
-        if($phrase["difficulty"]  == "3 - hard") {
+        if ($phrase["difficulty"]  == "3 - hard") {
             $source = $phrase["source"];
         }
         $phrase = $phrase["phrase"];
-    }    
+    }
 }
 
 $gamePhrase = new Phrase($gamePhrases, $phrase);
 $currentGame = new Game($gamePhrase);
 $currentGame->setLives($numberOfGuesses);       // explicitly set number of guesses so easily changed in config.php
 
-echo $currentGame->getPhrase()->getCurrentPhrase();
-$letter = "z";
-echo $letter;
-var_dump($currentGame->getPhrase()->checkLetter($letter));
+// echo $currentGame->getPhrase()->getCurrentPhrase();
+// $letter = "z";
+// echo $letter;
+// var_dump($currentGame->getPhrase()->checkLetter($letter));
 
-$currentGame->getPhrase()->addPhraseToDisplay();
+// $currentGame->getPhrase()->addPhraseToDisplay();
 
 ?>
+
+<header>
+    <div class="logo">
+        <img src="images/letters1.jpg" alt="Phrase Hunter" />
+        <h1>Phrase Hunter</h1>
+    </div>
+</header>
+<nav class="navbar">
+    <div id="hamburger">&#9776;</div>
+    <ul class="menu" id="hamburger-menu">
+        <li>Rules</li>
+        <li>New Game</li>
+        <li>Home</li>
+    </ul>
+</nav>
 
 <main>
     <div class="main-container">
