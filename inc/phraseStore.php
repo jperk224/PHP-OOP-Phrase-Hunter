@@ -10,106 +10,107 @@ $phrases = [
 
     [
         "phrase" => "A blessing in disguise",
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "A dime a dozen",
-        "difficulty" => "easy"
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "Beat around the bush",
-        "difficulty" => "easy"
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "Better late than never",
-        "difficulty" => "easy"
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "Bite the bullet",
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "Break a leg",
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
-        "phrase" => "Easy does it", 
-        "difficulty" => "medium"
+        "phrase" => "1 - easy does it", 
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "Get something out of your system", 
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "Give someone the benefit of the doubt", 
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "Hit the sack", 
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "It's not rocket science", 
-        "difficulty" => "easy"
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "Let someone off the hook", 
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "So far so good", 
-        "difficulty" => "easy"
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "Speak of the devil", 
-        "difficulty" => "easy"
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "That's the last straw", 
-        "difficulty" => "easy"],
+        "difficulty" => "1 - easy"
+    ],
     [
         "phrase" => "Time flies when you're having fun", 
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "We'll cross that bridge when we get there", 
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "Wrap your head around something", 
-        "difficulty" => "medium"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "You can say that again", 
-        "difficulty" => "easy"
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "Your guess is as good as mine", 
-        "difficulty" => "easy"
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "Life is what happens when you're busy making other plans",
-        "difficulty" => "hard",
+        "difficulty" => "3 - hard",
         "source" => "John Lennon"
     ],
     [
         "phrase" => "The way to get started is to quit talking and begin doing",
-        "difficulty" => "hard",
+        "difficulty" => "3 - hard",
         "source" => "Walt Disney"
     ],
     [
         "phrase" => "The future belongs to those who believe in the beauty of their dreams",
-        "difficulty" => "hard",
+        "difficulty" => "3 - hard",
         "source" => "Elanor Roosevelt"
     ],
     [
         "phrase" => "Tell me and I forget. Teach me and I remember. Involve me and I learn",
-        "difficulty" => "hard",
+        "difficulty" => "3 - hard",
         "source" => "Benjamin Franklin"
     ],
     [
         "phrase" => "In the end, it's not the years in your life that count. It's the life in your years",
-        "difficulty" => "hard",
+        "difficulty" => "3 - hard",
         "source" => "Abraham Lincoln"
     ]
 ];

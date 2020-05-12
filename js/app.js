@@ -25,4 +25,9 @@ $(".modal-container").click(function(e) {
     }
 });
 
+// render the from at game start to capture user info
+$("#game-start").click(function(e) {
+    $("#player-info").show();
+});
+
 // play.php

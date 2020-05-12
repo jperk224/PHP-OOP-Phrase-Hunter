@@ -8,12 +8,12 @@ require_once(__DIR__ . './views/header.php');
 <main>
 	<div class="main-container">
 		<h2 class="header">Phrase Hunter</h2>
-		<form action="play.php">
-			<button class="form-buttons">Start Game</button>
-			<button class="form-buttons" id="rules-render">Rules</button>
-			<!-- <input type="submit" class="form-buttons" value="Start Game">
-			<input type="button" class="form-buttons" id="rules-render" value="Rules"> -->
-		</form>
+		<!-- <form action="play.php"> -->
+			<div class="main-button-wrapper">
+				<button class="form-buttons" id="game-start">Start Game</button>
+				<button class="form-buttons" id="rules-render">Rules</button>
+			</div>
+		<!-- </form> -->
 	</div>
 	<!--end main-container -->
 
@@ -22,18 +22,26 @@ require_once(__DIR__ . './views/header.php');
 	<!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
 	<div id="rules-modal" class="modal-container">
 		<?php renderRules($numberOfGuesses); ?>
-		<!-- <div class="modal-content">
-			<span class="close" id="rules-close">&times;</span>
-			<h4>Phrase Hunter Rules</h4>
-			<ul>
-				<li>Guess all the letters in a hidden, random phrase!</li>
-				<li>Use the onscreen keyboard.  Letters can only be guessed once.</li>
-				<li>Can you get the phrase before  wrong guesses?</li> 
-			</ul>
-			<h5>Enjoy!</h5>
-			<button class="form-buttons">Got it!</button>
-		</div> -->
 	</div> <!-- end rules modal -->
+	
+	<!-- Player Form - enter name and difficulty level -->
+    <div id="player-info" class="modal-container">
+		<div class="modal-content">
+			<form action="play.php" method="get">
+				<label for="playerName">Please Enter Your Name:</label>
+				<input type="text" id="playerName" placeholder="Joe Smith" name="playerName"><br>
+				<label for="difficulty">Please Select Your Difficulty Level:</label>
+				<select id="difficulty" name="difficulty">
+					<option value="random">Random</option>
+					<!-- <option>""</option> -->
+					<?php renderDifficulty($gamePhrases); ?>
+					<!-- <option value="random">Random!<option> -->
+				</select><br>
+				<button class="form-buttons">Let's Go!</button>
+				<button class="form-buttons" id="rules-render" formaction="index.php">I'm Not Ready</button>	<!-- go back home -->
+			</form>
+		</div>
+    </div>
 </main>
 
 <?php 

@@ -7,18 +7,20 @@ require_once(__DIR__ . './views/header.php');
 $testPhrase = new Phrase($gamePhrases);
 $currentGame = new Game($testPhrase);
 
-echo($testPhrase->getCurrentPhrase());
+echo ($testPhrase->getCurrentPhrase());
 var_dump($testPhrase->splitPhrase());
 
 ?>
 
-<div class="main-container">
-    <div id="banner" class="section">
-        <h2 class="header">Phrase Hunter</h2>
+<main>
+    <div class="main-container">
+        <div id="banner" class="section">
+            <h2 class="header">Phrase Hunter</h2>
+        </div>
     </div>
-</div>
+</main>
 
-<?php 
+<?php
 
 require_once(__DIR__ . './views/footer.php');
 
