@@ -35,9 +35,6 @@ header {
   background-color: var(--color-neutral);
   color: var(--color-neutral-light);
   padding-right: 5px;
-  /* display: flex;
-  flex-direction: row-reverse;
-  align-items: center; */
   text-align: right;
   position: fixed;
   top: 5px;
@@ -133,6 +130,9 @@ input[type=submit].correct {
 .section {
   width: 100%;
   padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
 }
 
 #phrase ul li{
@@ -201,13 +201,14 @@ input[type=submit].correct {
 
 .letter {
   font-size: var(--font-size-medium);
-  height: 65px;
-  width: 65px;
-  padding: 20px 1px 0 1px;
+  height: 30px;
+  width: 30px;
+  padding: 5px 1px 0 1px;
   margin-right: 2px;
-  color: black;
+  color: var(--color-neutral);
   background: var(--color-neutral-light);
   border-radius: 5px;
+  text-align: center;
 }
 
 .space {

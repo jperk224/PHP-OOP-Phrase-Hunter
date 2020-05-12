@@ -89,13 +89,14 @@ class Phrase {
     public function addPhraseToDisplay() {
         foreach($this->splitPhrase() as $element) {
             if($element >= "A" && $element <= "Z") {
-                echo '<li>THIS SHOULD BE BLANK ' . $element . '</li>';
+                echo '<li class="letter">' . $element . '</li>'; //TODO: add hide class
             }
             elseif($element == " ") {
-                continue;                   // don't render spaces per the requirements
+                echo '<li class="space"></li>'; // don't render spaces per the requirements
+                // TODO: line breaks?
             }
             else {
-                echo '<li>' . $element . '</li>';
+                echo '<li class="letter">' . $element . '</li>';
             }
         }
     }

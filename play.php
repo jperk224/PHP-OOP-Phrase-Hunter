@@ -45,13 +45,6 @@ $gamePhrase = new Phrase($gamePhrases, $phrase);
 $currentGame = new Game($gamePhrase);
 $currentGame->setLives($numberOfGuesses);       // explicitly set number of guesses so easily changed in config.php
 
-// echo $currentGame->getPhrase()->getCurrentPhrase();
-// $letter = "z";
-// echo $letter;
-// var_dump($currentGame->getPhrase()->checkLetter($letter));
-
-// $currentGame->getPhrase()->addPhraseToDisplay();
-
 ?>
 
 <header>
@@ -70,6 +63,13 @@ $currentGame->setLives($numberOfGuesses);       // explicitly set number of gues
 </nav>
 
 <main>
+    <!-- The phrase display -->
+    <div class="section">
+        <?php      
+        $currentGame->getPhrase()->addPhraseToDisplay();
+        ?>
+    </div>
+
     <!-- The Rules Modal -->
     <!-- adapted from W3 Schools 'How to Create a Modal Box' -->
     <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
@@ -77,11 +77,11 @@ $currentGame->setLives($numberOfGuesses);       // explicitly set number of gues
         <?php renderRules($numberOfGuesses); ?>
     </div> <!-- end rules modal -->
 
-    <div class="main-container">
+    <!-- <div class="main-container">
         <div id="banner" class="section">
             <h2 class="header">Phrase Hunter</h2>
         </div>
-    </div>
+    </div> -->
 </main>
 
 <!-- Player Form - enter name and difficulty level -->
