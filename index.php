@@ -8,11 +8,11 @@ $playerName = '';
 $diffculty = '';
 
 if(isset($_GET["playerName"])) {
-	$playerName = filter_input(INPUT_GET, "playerName", FILTER_SANITIZE_STRING);
+	$playerName = filterGetString("playerName");
 }
 
 if(isset($_GET["difficulty"])) {
-	$diffculty = filter_input(INPUT_GET, "difficulty", FILTER_SANITIZE_STRING);
+	$diffculty = filterGetString("difficulty");
 }
 
 ?>
@@ -20,14 +20,11 @@ if(isset($_GET["difficulty"])) {
 <main>
 	<div class="main-container">
 		<h2 class="header">Phrase Hunter</h2>
-		<!-- <form action="play.php"> -->
 			<div class="main-button-wrapper">
-				<button class="form-buttons" id="game-start">Start Game</button>
-				<button class="form-buttons" id="rules-render">Rules</button>
+				<button class="form-buttons game-start">Start Game</button>
+				<button class="form-buttons rules-render">Rules</button>
 			</div>
-		<!-- </form> -->
-	</div>
-	<!--end main-container -->
+	</div> 	<!--end main-container -->
 
 	<!-- The Rules Modal -->
 	<!-- adapted from W3 Schools 'How to Create a Modal Box' -->
@@ -38,27 +35,28 @@ if(isset($_GET["difficulty"])) {
 	
 	<!-- Player Form - enter name and difficulty level -->
     <div id="player-info" class="modal-container">
-		<div class="modal-content">
+		<?php renderPlayerForm($playerName, $gamePhrases, $diffculty, "index"); ?>	
+		<!-- <div class="modal-content">
 			<form action="play.php" method="get">
 				<label for="playerName">Please Enter Your Name:</label>
 				<input type="text" id="playerName" placeholder="Joe Smith" name="playerName"
 				<?php 
-				if(!empty($playerName)) {
-					echo 'value="' . $playerName .'"';		// player name persistence 
-				} 
+				// if(!empty($playerName)) {
+					// echo 'value="' . $playerName .'"';		// player name persistence 
+				// } 
 				?>><br>
 				<label for="difficulty">Please Select Your Difficulty Level:</label>
 				<select id="difficulty" name="difficulty">
 					<option value="random">Random</option>
 					<?php 
 					// difficulty level form persistence via $difficulty argument
-					renderDifficulty($gamePhrases, $diffculty); 
+					// renderDifficulty($gamePhrases, $diffculty); 
 					?>	
 				</select><br>
 				<button class="form-buttons">Let's Go!</button>
-				<button class="form-buttons" id="rules-render" formaction="index.php">I'm Not Ready</button>	<!-- go back home -->
-			</form>
-		</div>
+				<button class="form-buttons" formaction="index.php">I'm Not Ready</button>	<!-- go back home -->
+			<!-- </form> -->
+		<!-- </div> -->
     </div>
 </main>
 

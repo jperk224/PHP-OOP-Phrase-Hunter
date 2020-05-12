@@ -2,7 +2,7 @@
 
 // Stop rules-render button from submitting the form
 // use an anonymous callback to stop form submission and render the rules modal
-$("#rules-render").click(function(e) {
+$(".rules-render").click(function(e) {
     $("#rules-modal").show();
     e.preventDefault();
 });
@@ -26,7 +26,7 @@ $(".modal-container").click(function(e) {
 });
 
 // render the from at game start to capture user info
-$("#game-start").click(function(e) {
+$(".game-start").click(function(e) {
     $("#player-info").show();
 });
 
@@ -36,4 +36,10 @@ $("#game-start").click(function(e) {
 // jQuery toggle() did not play nice with the css display, so conditional is used
 $("#hamburger").click(function(e) {
     $("#hamburger-menu").toggle();
+});
+
+// close the player form is user opts to not get a new game
+$("#close-player-form").click(function(e) {
+    $("#player-info").hide();
+    e.preventDefault();
 });

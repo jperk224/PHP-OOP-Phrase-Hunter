@@ -1,6 +1,15 @@
 <?php
 
+//MODEL FUNCTIONS
+
+// filter GET strings
+function filterGetString($variable) {
+    return filter_input(INPUT_GET, "$variable", FILTER_SANITIZE_STRING);
+}
+
+
 //VIEW FUNCTIONS
+
 // render the rules-modal content
 function renderRules($numberOfGuesses) {
     echo    '<div class="modal-content">
@@ -14,6 +23,33 @@ function renderRules($numberOfGuesses) {
 			    </ul>
 			    <h5>Enjoy!</h5>
 			    <button class="form-buttons" id="rules-close-button">Got it!</button>
+		    </div>';
+}
+
+// render the player form for name and difficulty
+function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
+    echo '<div class="modal-content">
+			<form action="play.php" method="get">
+				<label for="playerName">Please Enter Your Name:</label>
+				<input type="text" id="playerName" placeholder="Joe Smith" name="playerName"';
+				if(!empty($playerName)) {
+					echo 'value="' . $playerName .'"';		// player name persistence 
+				} 
+	echo		'<br>
+				<label for="difficulty">Please Select Your Difficulty Level:</label>
+				<select id="difficulty" name="difficulty">
+					<option value="random">Random</option>';
+					// difficulty level form persistence via $difficulty argument
+					renderDifficulty($gamePhrases, $diffculty); 
+	echo		'</select><br>
+                <button class="form-buttons">Let\'s Go!</button>';
+                if($page == "index") {
+                    echo '<button class="form-buttons" formaction="index.php">I\'m Not Ready</button>	<!-- go back home -->';
+                }
+                else {
+                    echo '<button class="form-buttons" id="close-player-form">Cancel</button>';
+                }
+	echo	'</form>
 		    </div>';
 }
 

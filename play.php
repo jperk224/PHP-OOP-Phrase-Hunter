@@ -3,6 +3,18 @@
 require_once(__DIR__ . '/inc/config.php');
 require_once(__DIR__ . './views/header.php');
 
+// variables for form persistence
+$playerName = '';
+$diffculty = '';
+
+if(isset($_GET["playerName"])) {
+	$playerName = filterGetString("playerName");
+}
+
+if(isset($_GET["difficulty"])) {
+	$diffculty = filterGetString("difficulty");
+}
+
 // filter $gamePhrases based on difficulty level selected
 if (isset($_GET["difficulty"])) {
     if ($_GET["difficulty"] == "easy") {
@@ -51,19 +63,31 @@ $currentGame->setLives($numberOfGuesses);       // explicitly set number of gues
 <nav class="navbar">
     <div id="hamburger">&#9776;</div>
     <ul class="menu" id="hamburger-menu">
-        <li>Rules</li>
-        <li>New Game</li>
-        <li>Home</li>
+        <li class="rules-render">Rules</li>
+        <li class="game-start">New Game</li>
+        <li><a href="index.php">Home</a></li>
     </ul>
 </nav>
 
 <main>
+    <!-- The Rules Modal -->
+    <!-- adapted from W3 Schools 'How to Create a Modal Box' -->
+    <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
+    <div id="rules-modal" class="modal-container">
+        <?php renderRules($numberOfGuesses); ?>
+    </div> <!-- end rules modal -->
+
     <div class="main-container">
         <div id="banner" class="section">
             <h2 class="header">Phrase Hunter</h2>
         </div>
     </div>
 </main>
+
+<!-- Player Form - enter name and difficulty level -->
+<div id="player-info" class="modal-container">
+    <?php renderPlayerForm($playerName, $gamePhrases, $diffculty); ?>
+</div>
 
 <?php
 
