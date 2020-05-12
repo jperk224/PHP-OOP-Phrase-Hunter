@@ -6,29 +6,36 @@ require_once(__DIR__ . './views/header.php');
 // filter $gamePhrases based on difficulty level selected
 if(isset($_GET["difficulty"])) {
     if($_GET["difficulty"] == "easy") {
-        $array = $gamePhrases->getAll("1 - easy", "difficulty");
-        var_dump($array);
+        $array = $gamePhrases->getAll("1 - easy", "difficulty");    
+        //TODO: if the phrase has already been used, pluck it out before choosing one at random
+        $phrase = $array[array_rand($array)]["phrase"];
     }
     else if($_GET["difficulty"] == "medium") {
         $array = $gamePhrases->getAll("2 - medium", "difficulty");
-        var_dump($array);
+        $phrase = $array[array_rand($array)]["phrase"];
     }
     else if($_GET["difficulty"] == "hard") {
         $array = $gamePhrases->getAll("3 - hard", "difficulty");
-        var_dump($array);
+        // with hard, we need the source for hints
+        $phrase = $array[array_rand($array)];
+        $source = $phrase["source"];
+        $phrase = $phrase["phrase"];
     }
     else {  // player chose random, pull the entire phrase array and create a random phrase object
         $array = $gamePhrases->getAll();
-        var_dump($array);
+        // grab the source if the randomly chosen phrase is hard difficulty
+        $phrase = $array[array_rand($array)];
+        if($phrase["difficulty"]  == "3 - hard") {
+            $source = $phrase["source"];
+        }
+        $phrase = $phrase["phrase"];
     }    
 }
 
-$gamePhrase = new Phrase($gamePhrases);
-// var_dump($gamePhrase);
-// $currentGame = new Game($testPhrase);
+$gamePhrase = new Phrase($gamePhrases, $phrase);
+$currentGame = new Game($gamePhrase);
+$currentGame->setLives($numberOfGuesses);       // explicitly set number of guesses so easily changed in config.php
 
-//echo ($testPhrase->getCurrentPhrase());
-//var_dump($testPhrase->splitPhrase());
 
 ?>
 

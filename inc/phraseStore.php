@@ -30,11 +30,11 @@ $phrases = [
     ],
     [
         "phrase" => "Break a leg",
-        "difficulty" => "2 - medium"
+        "difficulty" => "1 - easy"
     ],
     [
-        "phrase" => "1 - easy does it", 
-        "difficulty" => "2 - medium"
+        "phrase" => "Easy does it", 
+        "difficulty" => "1 - easy"
     ],
     [
         "phrase" => "Get something out of your system", 
@@ -66,7 +66,7 @@ $phrases = [
     ],
     [
         "phrase" => "That's the last straw", 
-        "difficulty" => "1 - easy"
+        "difficulty" => "2 - medium"
     ],
     [
         "phrase" => "Time flies when you're having fun", 

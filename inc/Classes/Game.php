@@ -20,15 +20,29 @@ class Game {
     public function __construct(Phrase $phrase) {
         
         $this->phrase = $phrase;
-        $this->lives = 5;               // current rules, user has 5 wrong attempts before 'game over' 
-
+        $this->lives = 5;               // current rules, user has 5 wrong attempts before 'game over'
+                                        // this is the default is not explicitly set
     }
 
     // getters
 
+    public function getPhrase() {
+        return $this->phrase;
+    }
+
+    public function getLives() {
+        return $this->lives;
+    }
 
     // setters
 
+    public function setPhrase($phrase) {
+        $this->phrase = $phrase;
+    }
+
+    public function setLives($lives) {
+        $this->lives = $lives;
+    }
 
     // other methods
 
