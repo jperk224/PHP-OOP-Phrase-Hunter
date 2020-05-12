@@ -36,6 +36,12 @@ $gamePhrase = new Phrase($gamePhrases, $phrase);
 $currentGame = new Game($gamePhrase);
 $currentGame->setLives($numberOfGuesses);       // explicitly set number of guesses so easily changed in config.php
 
+echo $currentGame->getPhrase()->getCurrentPhrase();
+$letter = "z";
+echo $letter;
+var_dump($currentGame->getPhrase()->checkLetter($letter));
+
+$currentGame->getPhrase()->addPhraseToDisplay();
 
 ?>
 

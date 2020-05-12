@@ -53,14 +53,16 @@ class Phrase {
     }
 
     // setters
-    public function setCurrentPhrase() {
+    public function setCurrentPhrase($phrase) {
+
+        $this->currentPhrase = $phrase;
 
     }
 
-    public function setSelected($guess) {
-        $guess = strtoupper($guess);
-        $this->selected[] = $guess;
-        return;
+    public function setSelected($arr) {
+        
+        $this->selected = $arr;
+
     }
 
     // other methods
@@ -73,17 +75,42 @@ class Phrase {
     }
 
     /**
-     * addPhraseToDisplay(): Builds the HTML for the letters of the phrase. 
-     * Each letter is presented by an empty box, one list item for each letter. 
-     * See the example_html/phrase.txt file for an example of what the render HTML 
-     * for a phrase should look like when the game starts. 
-     * When the player correctly guesses a letter, the empty box is replaced with the matched letter. 
-     * Use the class "hide" to hide a letter and "show" to show a letter. 
-     * Make sure the phrase displayed on the screen doesn't include boxes for spaces: see example HTML.
+     * Add player guesses to the selected array
      */
+    public function addSelected($guess) {
+        $guess = strtoupper($guess);
+        $this->selected[] = $guess;
+        return;
+    }
 
     /**
-     * checkLetter(): checks to see if a letter matches a letter in the phrase. 
+     * Build and outpout the HTML for the letters of the phrase.
+     */
+    public function addPhraseToDisplay() {
+        foreach($this->splitPhrase() as $element) {
+            if($element >= "A" && $element <= "Z") {
+                echo '<li>THIS SHOULD BE BLANK ' . $element . '</li>';
+            }
+            elseif($element == " ") {
+                continue;                   // don't render spaces per the requirements
+            }
+            else {
+                echo '<li>' . $element . '</li>';
+            }
+        }
+    }
+
+    /**
+     * Check to see if a letter matches a letter in the phrase. 
      * Accepts a single letter to check against the phrase. Returns true or false.
      */
+    public function checkLetter($letter) {
+        $letter = strtoupper($letter);
+        foreach($this->splitPhrase() as $phraseChar) {
+            if($letter == $phraseChar) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
