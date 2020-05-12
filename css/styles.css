@@ -127,6 +127,10 @@ input[type=submit].correct {
   border-radius: 5px; /* add slight curvature to modal corners */
 }
 
+.modal-content form {
+  text-align: center;
+}
+
 .close {
   color: var(--color-neutral);
   float: right;
