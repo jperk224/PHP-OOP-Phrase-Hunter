@@ -3,6 +3,18 @@
 require_once(__DIR__ . '/inc/config.php');
 require_once(__DIR__ . './views/header.php');
 
+// variables for form persistence
+$playerName = '';
+$diffculty = '';
+
+if(isset($_GET["playerName"])) {
+	$playerName = filter_input(INPUT_GET, "playerName", FILTER_SANITIZE_STRING);
+}
+
+if(isset($_GET["difficulty"])) {
+	$diffculty = filter_input(INPUT_GET, "difficulty", FILTER_SANITIZE_STRING);
+}
+
 ?>
 
 <main>
@@ -29,13 +41,19 @@ require_once(__DIR__ . './views/header.php');
 		<div class="modal-content">
 			<form action="play.php" method="get">
 				<label for="playerName">Please Enter Your Name:</label>
-				<input type="text" id="playerName" placeholder="Joe Smith" name="playerName"><br>
+				<input type="text" id="playerName" placeholder="Joe Smith" name="playerName"
+				<?php 
+				if(!empty($playerName)) {
+					echo 'value="' . $playerName .'"';		// player name persistence 
+				} 
+				?>><br>
 				<label for="difficulty">Please Select Your Difficulty Level:</label>
 				<select id="difficulty" name="difficulty">
 					<option value="random">Random</option>
-					<!-- <option>""</option> -->
-					<?php renderDifficulty($gamePhrases); ?>
-					<!-- <option value="random">Random!<option> -->
+					<?php 
+					// difficulty level form persistence via $difficulty argument
+					renderDifficulty($gamePhrases, $diffculty); 
+					?>	
 				</select><br>
 				<button class="form-buttons">Let's Go!</button>
 				<button class="form-buttons" id="rules-render" formaction="index.php">I'm Not Ready</button>	<!-- go back home -->

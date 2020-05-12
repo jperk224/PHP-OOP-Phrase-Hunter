@@ -39,6 +39,11 @@ function renderDifficulty(ArrayRepo $phrases, $selection = null) {
     }
     // echo out the entires as option fields
     foreach($challengeArray as $challenge) {
-        echo '<option value="'. $challenge . '">' . ucfirst($challenge) . '</option>';
+        if($challenge == $selection) {
+            echo '<option value="'. $challenge . '" selected>' . ucfirst($challenge) . '</option>';
+        }
+        else {
+            echo '<option value="'. $challenge . '">' . ucfirst($challenge) . '</option>';
+        }
     }
 }
