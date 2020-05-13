@@ -10,7 +10,7 @@ function filterGetString($variable) {
 
 //VIEW FUNCTIONS
 
-// render the rules-modal content
+// render the rules-modal
 function renderRules($numberOfGuesses) {
     echo    '<div class="modal-content">
 		        <span class="close" id="rules-close">&times;</span>
@@ -37,10 +37,10 @@ function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
 				} 
 	echo		'<br>
 				<label for="difficulty">Please Select Your Difficulty Level:</label>
-				<select id="difficulty" name="difficulty">
-					<option value="random">Random</option>';
+                <select id="difficulty" name="difficulty">
+                    <option value="random">Random</option>';    // This is first as a workaround for dropdown persistence
 					// difficulty level form persistence via $difficulty argument
-					renderDifficulty($gamePhrases, $diffculty); 
+                    renderDifficulty($gamePhrases, $diffculty); 
 	echo		'</select><br>
                 <button class="form-buttons">Let\'s Go!</button>';
                 if($page == "index") {
@@ -50,6 +50,16 @@ function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
                     echo '<button class="form-buttons" id="close-player-form">Cancel</button>';
                 }
 	echo	'</form>
+		    </div>';
+}
+
+// render the hint modal
+function renderHint($source) {
+    echo    '<div class="modal-content">
+		        <span class="close" id="hint-close">&times;</span>
+			    <h4>Source</h4>
+			    <h5>' . $source . '</h5>
+			    <button class="form-buttons" id="hint-close-button">Ok!</button>
 		    </div>';
 }
 

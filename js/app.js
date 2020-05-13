@@ -1,10 +1,8 @@
 // index.php
 
-// Stop rules-render button from submitting the form
-// use an anonymous callback to stop form submission and render the rules modal
+// Render the rule modal
 $(".rules-render").click(function(e) {
     $("#rules-modal").show();
-    e.preventDefault();
 });
 
 // close the rules modal is the 'x' is clicked
@@ -42,4 +40,27 @@ $("#hamburger").click(function(e) {
 $("#close-player-form").click(function(e) {
     $("#player-info").hide();
     e.preventDefault();
+});
+
+// render the hint modal
+$("#hint-button").click(function(e) {
+    $("#hint-modal").show();
+});
+
+// close the hint modal via 'x'
+$("#hint-close").click(function(e) {
+    $("#hint-modal").hide();
+});
+
+// close the hint modal via the button
+$("#hint-close-button").click(function(e) {
+    $("#hint-modal").hide();
+});
+
+// close the hint modal if the user clicks anywhere outside the modal
+$(".modal-container").click(function(e) {
+    if( $(event.target).attr('class') === "modal-container" &&
+        $("#hint-modal").css("display") === "block") {
+        $("#hint-modal").hide();
+    }
 });

@@ -7,12 +7,12 @@ require_once(__DIR__ . './views/header.php');
 $playerName = '';
 $diffculty = '';
 
-if(isset($_GET["playerName"])) {
-	$playerName = filterGetString("playerName");
+if (isset($_GET["playerName"])) {
+    $playerName = filterGetString("playerName");
 }
 
-if(isset($_GET["difficulty"])) {
-	$diffculty = filterGetString("difficulty");
+if (isset($_GET["difficulty"])) {
+    $diffculty = filterGetString("difficulty");
 }
 
 // filter $gamePhrases based on difficulty level selected
@@ -63,30 +63,34 @@ $currentGame->setLives($numberOfGuesses);       // explicitly set number of gues
 </nav>
 
 <main>
+    <h3>Phrase Hunter</h3>
+    <?php
+    if (!empty($source)) {
+        echo '<div class="main-button-wrapper" id="hint-button"><button class="form-buttons hint">Get Hint</button></div>';
+    }
+    ?>
     <!-- The phrase display -->
     <div class="section">
-        <?php      
+        <?php
         $currentGame->getPhrase()->addPhraseToDisplay();
         ?>
     </div>
-
-    <!-- The Rules Modal -->
-    <!-- adapted from W3 Schools 'How to Create a Modal Box' -->
-    <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
-    <div id="rules-modal" class="modal-container">
-        <?php renderRules($numberOfGuesses); ?>
-    </div> <!-- end rules modal -->
-
-    <!-- <div class="main-container">
-        <div id="banner" class="section">
-            <h2 class="header">Phrase Hunter</h2>
-        </div>
-    </div> -->
 </main>
+<!-- The Rules Modal -->
+<!-- adapted from W3 Schools 'How to Create a Modal Box' -->
+<!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
+<div id="rules-modal" class="modal-container">
+    <?php renderRules($numberOfGuesses); ?>
+</div> <!-- end rules modal -->
 
 <!-- Player Form - enter name and difficulty level -->
 <div id="player-info" class="modal-container">
     <?php renderPlayerForm($playerName, $gamePhrases, $diffculty); ?>
+</div>
+
+<!-- Hint Modal -->
+<div id="hint-modal" class="modal-container">
+    <?php renderHint($source) ?>;
 </div>
 
 <?php
