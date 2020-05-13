@@ -71,7 +71,8 @@ class Phrase {
      * Turn the phrase into an array to render in the UI
      */
     public function splitPhrase() {
-        return str_split($this->currentPhrase);
+        // return str_split($this->currentPhrase);
+        return explode(" ", $this->currentPhrase);
     }
 
     /**
@@ -86,18 +87,19 @@ class Phrase {
     /**
      * Build and outpout the HTML for the letters of the phrase.
      */
-    public function addPhraseToDisplay() {
-        foreach($this->splitPhrase() as $element) {
-            if($element >= "A" && $element <= "Z") {
-                echo '<li class="letter">' . $element . '</li>'; //TODO: add hide class
+    public function addPhraseToDisplay()
+    {
+        foreach ($this->splitPhrase() as $word) {
+            echo '<div class="phrase-word">';
+            for ($i = 0; $i < strlen($word); $i++) {
+                if ($word[$i] >= "A" && $word[$i] <= "Z") {
+                    echo '<li class="letter">' . $word[$i] . '</li>'; //TODO: add hide class
+                } else {
+                    echo '<li class="letter">' . $word[$i] . '</li>';
+                }
             }
-            elseif($element == " ") {
-                echo '<li class="space"></li>'; // don't render spaces per the requirements
-                // TODO: line breaks?
-            }
-            else {
-                echo '<li class="letter">' . $element . '</li>';
-            }
+            echo '<li class="space"></li>';
+            echo '</div>';
         }
     }
 

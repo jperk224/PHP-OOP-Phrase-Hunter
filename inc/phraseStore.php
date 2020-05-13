@@ -98,19 +98,19 @@ $phrases = [
         "difficulty" => "3 - hard",
         "source" => "Walt Disney"
     ],
-    [
-        "phrase" => "The future belongs to those who believe in the beauty of their dreams",
-        "difficulty" => "3 - hard",
-        "source" => "Elanor Roosevelt"
-    ],
-    [
-        "phrase" => "Tell me and I forget. Teach me and I remember. Involve me and I learn",
-        "difficulty" => "3 - hard",
-        "source" => "Benjamin Franklin"
-    ],
-    [
-        "phrase" => "In the end, it's not the years in your life that count. It's the life in your years",
-        "difficulty" => "3 - hard",
-        "source" => "Abraham Lincoln"
-    ]
+    // [
+    //     "phrase" => "The future belongs to those who believe in the beauty of their dreams",
+    //     "difficulty" => "3 - hard",
+    //     "source" => "Elanor Roosevelt"
+    // ],
+    // [
+    //     "phrase" => "Tell me and I forget. Teach me and I remember. Involve me and I learn",
+    //     "difficulty" => "3 - hard",
+    //     "source" => "Benjamin Franklin"
+    // ],
+    // [
+    //     "phrase" => "In the end, it's not the years in your life that count. It's the life in your years",
+    //     "difficulty" => "3 - hard",
+    //     "source" => "Abraham Lincoln"
+    // ]
 ];
