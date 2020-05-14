@@ -60,8 +60,6 @@ $file_contents .= 'require_once(__DIR__ . \'/inc/config.php\');' . "\n";
 $file_contents .= '// gameInstance variable references - $gamePhrase, $currentGame' . "\n";
 $file_contents .= '$currentPhraseObject = unserialize($_SESSION["currentPhraseObject"]);' . "\n";
 $file_contents .= '$currentGameObject = unserialize($_SESSION["currentGameObject"]);' . "\n";
-// $file_contents .= 'var_dump($currentPhraseObject->getCurrentPhrase());' . "\n";
-// $file_contents .= 'var_dump($currentGameObject->getLives());' . "\n";
 
 /* AJAX  receipt
 1. chek whether user is right or wrong
@@ -71,10 +69,15 @@ $file_contents .= '$currentGameObject = unserialize($_SESSION["currentGameObject
 */
 $file_contents .= '
     if(isset($_GET["userGuess"])) {
-        var_dump($currentPhraseObject->getCurrentPhrase());
-        var_dump($currentGameObject->getLives());
         $userGuess = filterGetString("userGuess");
-        var_dump($userGuess);
+        $returnKeyboard = $currentGameObject->displayKeyboard();    // TODO: this needs to render a specific keyboard based on inputs
+        $responseJSON = "{
+            \"userGuess\" : $userGuess,
+            \"keyboard\" : $returnKeyboard
+        }";
+
+
+        echo $responseJSON;
     }';
 
 file_put_contents($file, $file_contents);

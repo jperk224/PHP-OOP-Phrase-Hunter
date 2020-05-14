@@ -12,7 +12,6 @@ function submitUserGuess() {
     if (this.readyState === 4 && this.status === 200) {
       console.log(xhr.responseText);
       console.log(target);
-      target.disabled = true;   // disable the button
     }
   };
 

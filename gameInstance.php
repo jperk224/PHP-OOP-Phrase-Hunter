@@ -5,8 +5,13 @@ $currentPhraseObject = unserialize($_SESSION["currentPhraseObject"]);
 $currentGameObject = unserialize($_SESSION["currentGameObject"]);
 
     if(isset($_GET["userGuess"])) {
-        var_dump($currentPhraseObject->getCurrentPhrase());
-        var_dump($currentGameObject->getLives());
         $userGuess = filterGetString("userGuess");
-        var_dump($userGuess);
+        $returnKeyboard = $currentGameObject->displayKeyboard();
+        $responseJSON = "{
+            \"userGuess\" : $userGuess,
+            \"keyboard\" : $returnKeyboard
+        }";
+
+
+        echo $responseJSON;
     }
