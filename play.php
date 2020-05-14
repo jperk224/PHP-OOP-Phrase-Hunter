@@ -21,6 +21,9 @@ if (isset($_GET["playerName"])) {
 if (isset($_GET["difficulty"])) {
     $difficulty = filterGetString("difficulty");
 }
+else {          // redirect home if difficuly not set, it should be
+    header("location:index.php");
+}
 
 // filter $gamePhrases based on difficulty level selected
 if (isset($difficulty)) {
@@ -52,12 +55,22 @@ $gamePhrase = new Phrase($gamePhrases, $phrase);
 $currentGame = new Game($gamePhrase);
 $currentGame->setLives($numberOfGuesses);       // explicitly set number of guesses so easily changed in config.php
 
+// set session variables for these pieces so they can be referenced in the php file handling the AJAX request
+$_SESSION["currentPhraseObject"] = serialize($gamePhrase);
+$_SESSION["currentGameObject"] = serialize($currentGame);
+
 // write these to a new file for ajax requests
 //********************************************************************
 $file = 'gameInstance.php';
 $file_contents = '';
 $file_contents .= '<?php' . "\n";
 $file_contents .= 'require_once(__DIR__ . \'/inc/config.php\');' . "\n";
+$file_contents .= '// gameInstance variable references - $gamePhrase, $currentGame' . "\n";
+$file_contents .= '$currentPhraseObject = unserialize($_SESSION["currentPhraseObject"]);' . "\n";
+$file_contents .= '$currentGameObject = unserialize($_SESSION["currentGameObject"]);' . "\n";
+$file_contents .= 'var_dump($currentPhraseObject->getCurrentPhrase());' . "\n";
+$file_contents .= 'var_dump($currentGameObject->getLives());' . "\n";
+
 $file_contents .= '
     if(isset($_GET["userGuess"])) {
         $userGuess = filterGetString("userGuess");
