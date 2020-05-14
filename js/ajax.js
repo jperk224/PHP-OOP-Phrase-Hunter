@@ -10,16 +10,13 @@ function submitUserGuess() {
   // callback function to handle server response
   xhr.onreadystatechange = function (e) {
     if (this.readyState === 4 && this.status === 200) {
-        console.log(xhr.responseText);
-      document.getElementById("game-header").innerHTML = xhr.responseText;
-      document.getElementById("lives-count").innerHTML = xhr.responseText;
-    //   document.getElementById("test").innerHTML = xhr.responseText;
-    //   console.log(target);
+      console.log(xhr.responseText);
+      console.log(target);
     }
   };
 
   // open and send the request with the user guess in the query string
-  xhr.open("GET", "test.php?guess=" + target.innerHTML, true);
+  xhr.open("GET", "gameInstance.php?guess=" + target.innerHTML, true);
   xhr.send();
 
 }

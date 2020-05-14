@@ -3,6 +3,13 @@
 require_once(__DIR__ . '/inc/config.php');
 require_once(__DIR__ . './views/header.php');
 
+/* AJAX  receipt
+1. chek whether user is right or wrong
+2. if right, include 'number of letters'
+3. if wrong -> you're wrong
+4. render score
+*/
+
 // variables for form persistence
 $playerName = '';
 $diffculty = '';
@@ -45,6 +52,22 @@ $gamePhrase = new Phrase($gamePhrases, $phrase);
 $currentGame = new Game($gamePhrase);
 $currentGame->setLives($numberOfGuesses);       // explicitly set number of guesses so easily changed in config.php
 
+// write these to a new file for ajax requests
+//********************************************************************
+$file = 'gameInstance.php';
+$file_contents = '';
+$file_contents .= '<?php' . "\n";
+$file_contents .= 'require_once(__DIR__ . \'/inc/config.php\');' . "\n";
+$file_contents .= '
+    if(isset($_GET["userGuess"])) {
+        $userGuess = filterGetString("userGuess");
+        echo json_encode("hi");
+    }';
+
+file_put_contents($file, $file_contents);
+
+//**********************************************************************
+
 ?>
 
 <header>
@@ -62,6 +85,7 @@ $currentGame->setLives($numberOfGuesses);       // explicitly set number of gues
     </ul>
 </nav>
 <article>
+    <button onclick="submitUserGuess()">TEST AJAX</button>
     <div class="game-banner">
         <h3 id="game-header">Phrase Hunter</h3>
         <h3 id="lives-count">Remaining Guesses: <?php echo $numberOfGuesses; ?></h3>
