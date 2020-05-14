@@ -93,7 +93,7 @@ class Phrase {
             echo '<div class="phrase-word">';
             for ($i = 0; $i < strlen($word); $i++) {
                 if ($word[$i] >= "A" && $word[$i] <= "Z") {
-                    echo '<li class="letter">' . $word[$i] . '</li>'; //TODO: add hide class
+                    echo '<li class="letter">' . $word[$i] . '</li>'; //TODO: add hide class and ajax function
                 } else {
                     echo '<li class="letter">' . $word[$i] . '</li>';
                 }

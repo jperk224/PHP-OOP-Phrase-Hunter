@@ -12,19 +12,19 @@ if (isset($_GET["playerName"])) {
 }
 
 if (isset($_GET["difficulty"])) {
-    $diffculty = filterGetString("difficulty");
+    $difficulty = filterGetString("difficulty");
 }
 
 // filter $gamePhrases based on difficulty level selected
-if (isset($_GET["difficulty"])) {
-    if ($_GET["difficulty"] == "easy") {
+if (isset($difficulty)) {
+    if ($difficulty == "easy") {
         $array = $gamePhrases->getAll("1 - easy", "difficulty");
         //TODO: if the phrase has already been used, pluck it out before choosing one at random
         $phrase = $array[array_rand($array)]["phrase"];
-    } else if ($_GET["difficulty"] == "medium") {
+    } else if ($difficulty == "medium") {
         $array = $gamePhrases->getAll("2 - medium", "difficulty");
         $phrase = $array[array_rand($array)]["phrase"];
-    } else if ($_GET["difficulty"] == "hard") {
+    } else if ($difficulty == "hard") {
         $array = $gamePhrases->getAll("3 - hard", "difficulty");
         // with hard, we need the source for hints
         $phrase = $array[array_rand($array)];
@@ -56,14 +56,18 @@ $currentGame->setLives($numberOfGuesses);       // explicitly set number of gues
 <nav class="navbar">
     <div id="hamburger">&#9776;</div>
     <ul class="menu" id="hamburger-menu">
-        <li class="rules-render">Rules</li>
-        <li class="game-start">New Game</li>
-        <li><a href="index.php">Home</a></li>
+        <li class="rules-render menu-links">Rules</li>
+        <li class="game-start menu-links">New Game</li>
+        <li class="menu-links"><a href="index.php">Home</a></li>
     </ul>
 </nav>
-
+<article>
+    <div class="game-banner">
+        <h3 id="game-header">Phrase Hunter</h3>
+        <h3 id="lives-count">Remaining Guesses: <?php echo $numberOfGuesses; ?></h3>
+    </div>
+</article>
 <main>
-    <h3>Phrase Hunter</h3>
     <?php
     if (!empty($source)) {
         echo '<div class="main-button-wrapper" id="hint-button"><button class="form-buttons hint">Get Hint</button></div>';

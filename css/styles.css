@@ -59,6 +59,10 @@ header {
   color: var(--color-neutral-light);
 }
 
+.menu-links:hover {
+  cursor: pointer;
+}
+
 /* main */
 
 * {
@@ -121,7 +125,7 @@ input[type=submit].correct {
 .main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   height: 100%;
   max-height: 900px;
   text-align: center;
@@ -134,8 +138,8 @@ input[type=submit].correct {
 
 .main-button-wrapper {
   height: 50px;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
 }
 
 .section {
@@ -149,6 +153,13 @@ input[type=submit].correct {
 
 #phrase ul li{
   margin-top: 15px;
+}
+
+.game-banner {
+  display: flex;
+  justify-content: space-around;
+  font-size: .75em;
+  height: 10%;
 }
 
 /* Title */
