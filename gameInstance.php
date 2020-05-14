@@ -6,7 +6,7 @@ $currentGameObject = unserialize($_SESSION["currentGameObject"]);
 
     if(isset($_GET["userGuess"])) {
         $userGuess = filterGetString("userGuess");
-        $returnKeyboard = $currentGameObject->displayKeyboard();
+        $returnKeyboard = $currentGameObject->displayKeyboard();    // TODO: this needs to render a specific keyboard based on inputs
         $responseJSON = "{
             \"userGuess\" : $userGuess,
             \"keyboard\" : $returnKeyboard

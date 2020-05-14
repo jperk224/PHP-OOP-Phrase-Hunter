@@ -16,7 +16,8 @@ function submitUserGuess() {
   };
 
   // open and send the request with the user guess in the query string
-  xhr.open("GET", "gameInstance.php?userGuess=" + target.innerHTML, true);
+  // xhr.open("POST", "play.php", true);
+  xhr.open("GET", "play.php?userGuess=" + target.innerHTML, true);
   xhr.send();
 
 }
