@@ -12,11 +12,12 @@ function submitUserGuess() {
     if (this.readyState === 4 && this.status === 200) {
       console.log(xhr.responseText);
       console.log(target);
+      target.disabled = true;   // disable the button
     }
   };
 
   // open and send the request with the user guess in the query string
-  xhr.open("GET", "gameInstance.php?guess=" + target.innerHTML, true);
+  xhr.open("GET", "gameInstance.php?userGuess=" + target.innerHTML, true);
   xhr.send();
 
 }

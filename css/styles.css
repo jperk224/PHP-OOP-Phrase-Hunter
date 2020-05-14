@@ -100,7 +100,7 @@ h1 {
 button, input[type=submit] {
   margin: 6px;
   border: 1px solid transparent;
-  padding: .5rem 1rem;
+  /* padding: .5rem 1rem; */
   color: var(--color-keys);
   font-size: var(--font-size-medium);
   background-color: var(--color-keys-light);
@@ -259,9 +259,20 @@ input[type=submit].correct {
 
 /* Keyboard */
 
+#qwerty {
+  text-align: center;
+}
+
 .keyrow {
   display: flex;
   justify-content: center;
+}
+
+.key {
+  font-size: .7em;
+  height: 1rem;
+  width: 1.75rem;
+  margin: 1px;
 }
 
 .chosen {

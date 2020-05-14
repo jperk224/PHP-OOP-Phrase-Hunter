@@ -3,13 +3,6 @@
 require_once(__DIR__ . '/inc/config.php');
 require_once(__DIR__ . './views/header.php');
 
-/* AJAX  receipt
-1. chek whether user is right or wrong
-2. if right, include 'number of letters'
-3. if wrong -> you're wrong
-4. render score
-*/
-
 // variables for form persistence
 $playerName = '';
 $diffculty = '';
@@ -20,8 +13,7 @@ if (isset($_GET["playerName"])) {
 
 if (isset($_GET["difficulty"])) {
     $difficulty = filterGetString("difficulty");
-}
-else {          // redirect home if difficuly not set, it should be
+} else {          // redirect home if difficuly not set, it should be
     header("location:index.php");
 }
 
@@ -68,13 +60,21 @@ $file_contents .= 'require_once(__DIR__ . \'/inc/config.php\');' . "\n";
 $file_contents .= '// gameInstance variable references - $gamePhrase, $currentGame' . "\n";
 $file_contents .= '$currentPhraseObject = unserialize($_SESSION["currentPhraseObject"]);' . "\n";
 $file_contents .= '$currentGameObject = unserialize($_SESSION["currentGameObject"]);' . "\n";
-$file_contents .= 'var_dump($currentPhraseObject->getCurrentPhrase());' . "\n";
-$file_contents .= 'var_dump($currentGameObject->getLives());' . "\n";
+// $file_contents .= 'var_dump($currentPhraseObject->getCurrentPhrase());' . "\n";
+// $file_contents .= 'var_dump($currentGameObject->getLives());' . "\n";
 
+/* AJAX  receipt
+1. chek whether user is right or wrong
+2. if right, include 'number of letters'
+3. if wrong -> you're wrong
+4. render score
+*/
 $file_contents .= '
     if(isset($_GET["userGuess"])) {
+        var_dump($currentPhraseObject->getCurrentPhrase());
+        var_dump($currentGameObject->getLives());
         $userGuess = filterGetString("userGuess");
-        echo json_encode("hi");
+        var_dump($userGuess);
     }';
 
 file_put_contents($file, $file_contents);
@@ -98,7 +98,6 @@ file_put_contents($file, $file_contents);
     </ul>
 </nav>
 <article>
-    <button onclick="submitUserGuess()">TEST AJAX</button>
     <div class="game-banner">
         <h3 id="game-header">Phrase Hunter</h3>
         <h3 id="lives-count">Remaining Guesses: <?php echo $numberOfGuesses; ?></h3>
@@ -116,6 +115,11 @@ file_put_contents($file, $file_contents);
         $currentGame->getPhrase()->addPhraseToDisplay();
         ?>
     </div>
+    <!-- Display the keyboard -->
+    <div id="qwerty" class="section">
+        <?php echo $currentGame->displayKeyboard(); ?>
+    </div>
+    <!-- end keyboard display -->
 </main>
 <!-- The Rules Modal -->
 <!-- adapted from W3 Schools 'How to Create a Modal Box' -->
