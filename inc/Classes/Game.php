@@ -49,11 +49,29 @@ class Game {
     /**
      * checkForWin(): this method checks to see if the player has selected all of the letters.
      */
-
+    public function checkForWin() {
+        $phrase = $this->getPhrase()->getCurrentPhrase();
+        for($i = 0; $i < strlen($phrase); $i++) {
+            if ($phrase[$i] >= "A" && $phrase[$i] <= "Z") {
+                if(!(in_array($phrase[$i], array_keys($this->getPhrase()->getSelected())))) {
+                    return false;   // exit early if there's a letter in the phrase not yet selected
+                }
+            } else {
+                continue;
+            }
+        }
+        return true;    // if you got here, all letters have been selected
+    }
 
     /**
      * checkForLose(): this method checks to see if the player has guessed too many wrong letters.
-     */ 
+     */
+    public function checkForLose() {
+        if($this->getLives() <=0) {
+            return true;
+        }
+        return false;
+    } 
 
     /**
      * gameOver(): this method displays one message if the player wins and another message if they lose. 

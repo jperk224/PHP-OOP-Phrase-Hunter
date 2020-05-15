@@ -22,6 +22,11 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
 
     $userGuess = strtoupper(filterGetString("userGuess"));
     $currentGameObject->getPhrase()->addGuess($userGuess);
+    var_dump($currentGameObject->getPhrase()->getSelected());
+    var_dump($currentGameObject->checkForLose());
+
+    // run check for win after lives check and check for loose
+
     $returnPhrase = $currentGameObject->getPhrase()->addPhraseToDisplay();
     $returnKeyboard = $currentGameObject->displayKeyboard();
 
