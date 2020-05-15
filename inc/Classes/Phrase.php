@@ -71,7 +71,6 @@ class Phrase {
      * Turn the phrase into an array to render in the UI
      */
     public function splitPhrase() {
-        // return str_split($this->currentPhrase);
         return explode(" ", $this->currentPhrase);
     }
 
@@ -85,7 +84,7 @@ class Phrase {
     }
 
     /**
-     * Build and outpout the HTML for the letters of the phrase.
+     * Build and output the HTML for the letters of the phrase.
      */
     public function addPhraseToDisplay()
     {

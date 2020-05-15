@@ -63,7 +63,7 @@ class Game {
     /**
      * displayKeyboard(): Create a onscreen keyboard form.  
      */
-    public function displayKeyboard($arr)
+    public function displayKeyboard()
     {
         // Note: There's a bit of duplicated code here needed to handle AJAX requests cleanly
         $keyboardHTML = '';
@@ -72,6 +72,8 @@ class Game {
             ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
             ['z', 'x', 'c', 'v', 'b', 'n', 'm']
         ];
+
+        $arr = $this->getPhrase()->getSelected();
 
         if (count($arr) > 0) {
             foreach ($keyboardArray as $keyrow) { // guesses already exist in the 'selected' array, its not a new game, return JSON format

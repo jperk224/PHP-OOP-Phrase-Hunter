@@ -22,18 +22,17 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
 
     $userGuess = strtoupper(filterGetString("userGuess"));
     $currentGameObject->getPhrase()->addGuess($userGuess);
-    $_SESSION["selectedArray"] = $currentGameObject->getPhrase()->getSelected();
-    $returnKeyboard = $currentGameObject->displayKeyboard($_SESSION["selectedArray"]);
+    $returnKeyboard = $currentGameObject->displayKeyboard();
 
     // overwrite the session objects so the user guesses persist in the selected array
     $_SESSION["currentPhraseObject"] = serialize($currentGameObject->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGameObject);
-    $_SESSION["selectedArray"] = array();   // clear the array so it can be reset with next AJAX
 
     // JSON to return
     $responseJSON = "{
         \"userGuess\" : \"$userGuess\",
-        \"keyboard\" : \"$returnKeyboard\"
+        \"keyboard\" : \"$returnKeyboard\",
+        \"phrase\" : \"\"
     }";
     
     echo $responseJSON;
@@ -86,8 +85,6 @@ else {    // It's not an AJAX request, we're starting a new game, render a new p
     // set session variables for these pieces so they can be referenced in the php file handling the AJAX request
     $_SESSION["currentPhraseObject"] = serialize($currentGame->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGame);
-    //$_SESSION["playerName"] = $playerName;
-    // $_SESSION["difficulty"] = $diffculty;
 
 ?>
 
@@ -118,14 +115,12 @@ else {    // It's not an AJAX request, we're starting a new game, render a new p
         }
         ?>
         <!-- The phrase display -->
-        <div class="section">
-            <?php
-            $currentGame->getPhrase()->addPhraseToDisplay();
-            ?>
+        <div id="phraseDisplay" class="section">
+            <?php $currentGame->getPhrase()->addPhraseToDisplay(); ?>
         </div>
         <!-- Display the keyboard -->
         <div id="qwerty" class="section">
-            <?php echo $currentGame->displayKeyboard($currentGame->getPhrase()->getSelected()); ?>
+    <?php echo $currentGame->displayKeyboard(); ?>
         </div>
         <!-- end keyboard display -->
     </main>
