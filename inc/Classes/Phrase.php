@@ -80,7 +80,7 @@ class Phrase {
      */
     public function addGuess($guess) {
         $guess = strtoupper($guess);
-        $this->selected[] = $guess;
+        $this->selected[] = [$guess, $this->checkLetter($guess)];
         return;
     }
 
@@ -109,9 +109,12 @@ class Phrase {
      */
     public function checkLetter($letter) {
         $letter = strtoupper($letter);
-        foreach($this->splitPhrase() as $phraseChar) {
-            if($letter == $phraseChar) {
-                return true;
+        foreach($this->splitPhrase() as $phraseWord) {
+            for($i = 0; $i < strlen($phraseWord); $i++) {
+                echo 'letter: ' . $letter . ' phraseWordLetter: ' . $phraseWord[$i] . "\n";
+                if($letter == $phraseWord[$i]) {
+                    return true;
+                }
             }
         }
         return false;

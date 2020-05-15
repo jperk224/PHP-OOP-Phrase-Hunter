@@ -37,12 +37,14 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     $userGuess = strtoupper(filterGetString("userGuess"));
     $currentGameObject->getPhrase()->addGuess($userGuess);
     $returnKeyboard = $currentGameObject->displayKeyboard();    // TODO: this needs to render a specific keyboard based on inputs
-    var_dump($currentGameObject->getPhrase()->getSelected()); 
+    echo $currentGameObject->getPhrase()->getCurrentPhrase();
+    var_dump($currentGameObject->getPhrase()->getSelected());
+    var_dump($currentGameObject->getPhrase()->splitPhrase()); 
 
     // overwrite the session objects so the user guesses persist in the selected array
-    $_SESSION["currentPhraseObject"] = serialize($currentPhraseObject);
+    $_SESSION["currentPhraseObject"] = serialize($currentGameObject->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGameObject);
-    
+
     // JSON to return
     // $responseJSON = "{
     //     \"userGuess\" : $userGuess,
@@ -96,7 +98,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     $currentGame->setLives($numberOfGuesses);       // explicitly set number of guesses so easily changed in config.php
 
     // set session variables for these pieces so they can be referenced in the php file handling the AJAX request
-    $_SESSION["currentPhraseObject"] = serialize($gamePhrase);
+    $_SESSION["currentPhraseObject"] = serialize($currentGame->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGame);
     $_SESSION["playerName"] = $playerName;
     $_SESSION["difficulty"] = $diffculty;
