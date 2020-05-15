@@ -9,10 +9,6 @@ function filterGetString($variable) {
 
 //VIEW FUNCTIONS
 
-if(isset($_GET["userGuess"])) {
-    echo "Hello ajax";
-}
-
 // render the rules-modal
 function renderRules($numberOfGuesses) {
     echo    '<div class="modal-content">

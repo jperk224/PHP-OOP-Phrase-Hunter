@@ -96,6 +96,7 @@ class Game {
             foreach ($keyboardArray as $keyrow) {   // no guesses, it's a new game, render regular HTML
                 $keyboardHTML .= '<div class="keyrow">';
                 foreach ($keyrow as $key) {
+                    $key = strtoupper($key);
                     $keyboardHTML .= '<button class="key" onclick="submitUserGuess()">' . $key . '</button>';
                 }
                 // close the div

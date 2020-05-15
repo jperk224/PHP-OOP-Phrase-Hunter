@@ -11,9 +11,9 @@ function submitUserGuess() {
   xhr.onreadystatechange = function (e) {
     if (this.readyState === 4 && this.status === 200) {
       console.log(xhr.responseText);
-      // var gameInfo = JSON.parse(xhr.responseText);
-      // console.log(gameInfo);
-      // document.getElementById('querty').innerHTML(gameInfo["keyboard"]);
+      var gameInfo = JSON.parse(xhr.responseText);
+      console.log(gameInfo);
+      document.getElementById('qwerty').innerHTML = gameInfo["keyboard"];
     }
   };
 

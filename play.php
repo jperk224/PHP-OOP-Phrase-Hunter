@@ -23,9 +23,6 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     $userGuess = strtoupper(filterGetString("userGuess"));
     $currentGameObject->getPhrase()->addGuess($userGuess);
     $_SESSION["selectedArray"] = $currentGameObject->getPhrase()->getSelected();
-    echo "SELECTED ARRAY";
-    var_dump($_SESSION["selectedArray"]);
-    echo "*********************************";
     $returnKeyboard = $currentGameObject->displayKeyboard($_SESSION["selectedArray"]);
 
     // overwrite the session objects so the user guesses persist in the selected array
