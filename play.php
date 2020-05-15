@@ -15,49 +15,33 @@ if (isset($_SESSION["currentGameObject"])) {
     $currentGameObject = '';
 }
 
-if (isset($_SESSION["playerName"])) {
-    $playerName = $_SESSION["playerName"];
-} else {
-    $playerName = '';
-}
-
-if (isset($_SESSION["difficulty"])) {
-    $diffculty = $_SESSION["difficulty"];
-} else {
-    $diffculty = '';
-}
+$playerName = '';
+$difficulty = '';
 
 if (isset($_GET["userGuess"])) {     // AJAX handling
-/* AJAX  receipt
-1. chek whether user is right or wrong
-2. if right, include 'number of letters'
-3. if wrong -> you're wrong
-4. render score
-*/
+
     $userGuess = strtoupper(filterGetString("userGuess"));
     $currentGameObject->getPhrase()->addGuess($userGuess);
     $_SESSION["selectedArray"] = $currentGameObject->getPhrase()->getSelected();
     echo "SELECTED ARRAY";
     var_dump($_SESSION["selectedArray"]);
     echo "*********************************";
-    $returnKeyboard = $currentGameObject->displayKeyboard($_SESSION["selectedArray"]);    // TODO: this needs to render a specific keyboard based on inputs
+    $returnKeyboard = $currentGameObject->displayKeyboard($_SESSION["selectedArray"]);
 
     // overwrite the session objects so the user guesses persist in the selected array
     $_SESSION["currentPhraseObject"] = serialize($currentGameObject->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGameObject);
-    $_SESSION["selectedArray"] = array();
-    var_dump($_SESSION["selectedArray"]);
-
+    $_SESSION["selectedArray"] = array();   // clear the array so it can be reset with next AJAX
 
     // JSON to return
     $responseJSON = "{
-        \"userGuess\" : $userGuess,
-        \"keyboard\" : $returnKeyboard
+        \"userGuess\" : \"$userGuess\",
+        \"keyboard\" : \"$returnKeyboard\"
     }";
     
-    
     echo $responseJSON;
-} else {    // It's not an AJAX request, we're starting a new game, render a new page
+} 
+else {    // It's not an AJAX request, we're starting a new game, render a new page
 
     require_once(__DIR__ . './views/header.php');
 
@@ -68,6 +52,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     if (isset($_GET["difficulty"])) {
         $difficulty = filterGetString("difficulty");
     } else {          // redirect home if difficuly not set, it should be
+
         header("location:index.php");
     }
 
@@ -104,8 +89,8 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     // set session variables for these pieces so they can be referenced in the php file handling the AJAX request
     $_SESSION["currentPhraseObject"] = serialize($currentGame->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGame);
-    $_SESSION["playerName"] = $playerName;
-    $_SESSION["difficulty"] = $diffculty;
+    //$_SESSION["playerName"] = $playerName;
+    // $_SESSION["difficulty"] = $diffculty;
 
 ?>
 
@@ -125,7 +110,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     </nav>
     <article>
         <div class="game-banner">
-            <h3 id="game-header">Phrase Hunter</h3>
+            <h3 id="game-header">Player Name: <?php echo $playerName; ?></h3>
             <h3 id="lives-count">Remaining Guesses: <?php echo $numberOfGuesses; ?></h3>
         </div>
     </article>
@@ -143,7 +128,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
         </div>
         <!-- Display the keyboard -->
         <div id="qwerty" class="section">
-            <?php echo $currentGame->displayKeyboard($currentGameObject->getPhrase()->getSelected()); ?>
+            <?php echo $currentGame->displayKeyboard($currentGame->getPhrase()->getSelected()); ?>
         </div>
         <!-- end keyboard display -->
     </main>
@@ -156,7 +141,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
 
     <!-- Player Form - enter name and difficulty level -->
     <div id="player-info" class="modal-container">
-        <?php renderPlayerForm($playerName, $gamePhrases, $diffculty); ?>
+        <?php renderPlayerForm($playerName, $gamePhrases, $difficulty); ?>
     </div>
 
     <!-- Hint Modal -->

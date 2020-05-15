@@ -7,7 +7,6 @@ function filterGetString($variable) {
     return filter_input(INPUT_GET, "$variable", FILTER_SANITIZE_STRING);
 }
 
-
 //VIEW FUNCTIONS
 
 if(isset($_GET["userGuess"])) {
@@ -53,6 +52,7 @@ function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
                 else {
                     echo '<button class="form-buttons" id="close-player-form">Cancel</button>';
                 }
+    echo    '<input type="hidden" name="newGame" value="1">';            
 	echo	'</form>
 		    </div>';
 }

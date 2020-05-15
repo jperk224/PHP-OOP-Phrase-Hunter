@@ -65,49 +65,44 @@ class Game {
      */
     public function displayKeyboard($arr)
     {
+        // Note: There's a bit of duplicated code here needed to handle AJAX requests cleanly
         $keyboardHTML = '';
         $keyboardArray = [
             ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
             ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
             ['z', 'x', 'c', 'v', 'b', 'n', 'm']
         ];
-        //$selectedArray = $this->getPhrase()->getSelected(); // this should grab the current array after most recent guess
-        // $selectedArray = $arr;
-        if(count($arr) > 0) {
-            echo "array has count" . count($arr);
+
+        if (count($arr) > 0) {
+            foreach ($keyboardArray as $keyrow) { // guesses already exist in the 'selected' array, its not a new game, return JSON format
+                $keyboardHTML .= '<div class=\"keyrow\">';
+                foreach ($keyrow as $key) {
+                    $key = strtoupper($key);
+                    // determine whether a given letter is marked as true/false (i.e. exists in the phrase)
+                    if (array_key_exists($key, $arr)) {
+                        if ($arr[$key]) {  // value is true so render with the 'correct' class
+                            $keyboardHTML .= '<button class=\"key correct\" onclick=\"submitUserGuess()\" disabled>' . $key . '</button>';
+                        } else {      // value is false, render with 'incorrect' class
+                            $keyboardHTML .= '<button class=\"key incorrect\" onclick=\"submitUserGuess()\" disabled>' . $key . '</button>';
+                        }
+                    } else {      // key hasn't been used yet, it's not in selected array, assign no class and don't disable
+                        $keyboardHTML .= '<button class=\"key\" onclick=\"submitUserGuess()\">' . $key . '</button>';
+                    }
+                }
+                $keyboardHTML .= '</div>';
+            }
         }
         else {
-            echo "array is 0";
-        }
-        // var_dump($arr);   
-        foreach ($keyboardArray as $keyrow) {
-            $keyboardHTML .= '<div class="keyrow">';
-            foreach ($keyrow as $key) {
-                $key = strtoupper($key);
-                echo "KEY: $key\n";
-                var_dump(array_keys($arr));
-
-
-                if (count($arr) > 0) {    // guesses already exist in the 'selected' array
-                    // determine whether a given letter is marked as true/false (i.e. exists in the phrase)
-                    if (array_key_exists($key, $arr)) {   
-                        echo "KEY IS IN ARRAY\n";
-                        // if ($arr[$key]) {  // value is true so render with the 'correct' class
-                        //     $keyboardHTML .= '<button class="key correct" onclick="submitUserGuess()" disabled>' . $key . '</button>';
-                        // } else {      // value is false, render with 'incorrect' class
-                        //     $keyboardHTML .= '<button class="key incorrect" onclick="submitUserGuess()" disabled>' . $key . '</button>';
-                        // }
-                    } else {      // key hasn't been used yet, it's not in selected array, assign no class and don't disable
-                        echo "KEY IS NOT IN ARRAY\n";
-                        // $keyboardHTML .= '<button class="key" onclick="submitUserGuess()">' . $key . '</button>';
-                    }
-                } 
-                // else {    // no guesses in the array, render a fresh keyboard
-                     $keyboardHTML .= '<button class="key" onclick="submitUserGuess()">' . $key . '</button>';
-                // }
+            foreach ($keyboardArray as $keyrow) {   // no guesses, it's a new game, render regular HTML
+                $keyboardHTML .= '<div class="keyrow">';
+                foreach ($keyrow as $key) {
+                    $keyboardHTML .= '<button class="key" onclick="submitUserGuess()">' . $key . '</button>';
+                }
+                // close the div
+                $keyboardHTML .= '</div>';
             }
-            $keyboardHTML .= '</div>';
         }
+
         return $keyboardHTML;
     }
 
