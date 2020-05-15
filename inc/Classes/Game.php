@@ -21,7 +21,7 @@ class Game {
         
         $this->phrase = $phrase;
         $this->lives = 5;               // current rules, user has 5 wrong attempts before 'game over'
-                                        // this is the default is not explicitly set
+                                        // this is the default if not explicitly set
     }
 
     // getters
