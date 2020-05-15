@@ -36,23 +36,27 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
 */
     $userGuess = strtoupper(filterGetString("userGuess"));
     $currentGameObject->getPhrase()->addGuess($userGuess);
-    $returnKeyboard = $currentGameObject->displayKeyboard();    // TODO: this needs to render a specific keyboard based on inputs
-    echo $currentGameObject->getPhrase()->getCurrentPhrase();
-    var_dump($currentGameObject->getPhrase()->getSelected());
-    var_dump($currentGameObject->getPhrase()->splitPhrase()); 
+    $_SESSION["selectedArray"] = $currentGameObject->getPhrase()->getSelected();
+    echo "SELECTED ARRAY";
+    var_dump($_SESSION["selectedArray"]);
+    echo "*********************************";
+    $returnKeyboard = $currentGameObject->displayKeyboard($_SESSION["selectedArray"]);    // TODO: this needs to render a specific keyboard based on inputs
 
     // overwrite the session objects so the user guesses persist in the selected array
     $_SESSION["currentPhraseObject"] = serialize($currentGameObject->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGameObject);
+    $_SESSION["selectedArray"] = array();
+    var_dump($_SESSION["selectedArray"]);
+
 
     // JSON to return
-    // $responseJSON = "{
-    //     \"userGuess\" : $userGuess,
-    //     \"keyboard\" : $returnKeyboard
-    // }";
+    $responseJSON = "{
+        \"userGuess\" : $userGuess,
+        \"keyboard\" : $returnKeyboard
+    }";
     
     
-    //echo $responseJSON;
+    echo $responseJSON;
 } else {    // It's not an AJAX request, we're starting a new game, render a new page
 
     require_once(__DIR__ . './views/header.php');
@@ -139,7 +143,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
         </div>
         <!-- Display the keyboard -->
         <div id="qwerty" class="section">
-            <?php echo $currentGame->displayKeyboard(); ?>
+            <?php echo $currentGame->displayKeyboard($currentGameObject->getPhrase()->getSelected()); ?>
         </div>
         <!-- end keyboard display -->
     </main>
