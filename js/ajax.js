@@ -13,7 +13,7 @@ function submitUserGuess() {
       console.log(xhr.responseText);
       var gameInfo = JSON.parse(xhr.responseText);
       console.log(gameInfo);
-      // document.getElementById('phraseDisplay').innerHTML = gameInfo["phrase"];
+      document.getElementById('phraseDisplay').innerHTML = gameInfo["phrase"];
       document.getElementById('qwerty').innerHTML = gameInfo["keyboard"];
     }
   };

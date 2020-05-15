@@ -87,19 +87,44 @@ class Phrase {
      * Build and output the HTML for the letters of the phrase.
      */
     public function addPhraseToDisplay()
+    // Note this has some duplication to handle AJAX
     {
-        foreach ($this->splitPhrase() as $word) {
-            echo '<div class="phrase-word">';
-            for ($i = 0; $i < strlen($word); $i++) {
-                if ($word[$i] >= "A" && $word[$i] <= "Z") {
-                    echo '<li class="letter">' . $word[$i] . '</li>'; //TODO: add hide class and ajax function
-                } else {
-                    echo '<li class="letter">' . $word[$i] . '</li>';
+        $phraseHTML = '';
+        $arr = $this->getSelected();
+        if(count($arr) > 0) {
+            foreach ($this->splitPhrase() as $word) {
+                $phraseHTML .= '<div class=\"phrase-word\">';
+                for ($i = 0; $i < strlen($word); $i++) {
+                    if ($word[$i] >= "A" && $word[$i] <= "Z") {
+                        if(in_array($word[$i], array_keys($arr)) && $arr[$word[$i]]) {  // letter has been guessed and is in phrase
+                            $phraseHTML .= '<li class=\"letter\">' . $word[$i] . '</li>'; 
+                        }
+                        else {
+                            $phraseHTML .= '<li class=\"letter hide\">' . $word[$i] . '</li>'; 
+                        } 
+                    } else {
+                        $phraseHTML .= '<li class=\"letter\">' . $word[$i] . '</li>';
+                    }
                 }
+                $phraseHTML .= '<li class=\"space\"></li>';
+                $phraseHTML .= '</div>';
             }
-            echo '<li class="space"></li>';
-            echo '</div>';
         }
+        else {  // no guesses have been made, it's a new game, no check against selected or JSON formatting needed
+            foreach ($this->splitPhrase() as $word) {
+                $phraseHTML .= '<div class="phrase-word">';
+                for ($i = 0; $i < strlen($word); $i++) {
+                    if ($word[$i] >= "A" && $word[$i] <= "Z") {
+                        $phraseHTML .= '<li class="letter hide">' . $word[$i] . '</li>';
+                    } else {
+                        $phraseHTML .= '<li class="letter">' . $word[$i] . '</li>';
+                    }
+                }
+                $phraseHTML .= '<li class="space"></li>';
+                $phraseHTML .= '</div>';
+            }
+        }
+        return $phraseHTML;
     }
 
     /**

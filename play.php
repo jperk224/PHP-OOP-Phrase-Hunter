@@ -22,6 +22,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
 
     $userGuess = strtoupper(filterGetString("userGuess"));
     $currentGameObject->getPhrase()->addGuess($userGuess);
+    $returnPhrase = $currentGameObject->getPhrase()->addPhraseToDisplay();
     $returnKeyboard = $currentGameObject->displayKeyboard();
 
     // overwrite the session objects so the user guesses persist in the selected array
@@ -32,7 +33,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     $responseJSON = "{
         \"userGuess\" : \"$userGuess\",
         \"keyboard\" : \"$returnKeyboard\",
-        \"phrase\" : \"\"
+        \"phrase\" : \"$returnPhrase\"
     }";
     
     echo $responseJSON;
@@ -116,7 +117,7 @@ else {    // It's not an AJAX request, we're starting a new game, render a new p
         ?>
         <!-- The phrase display -->
         <div id="phraseDisplay" class="section">
-            <?php $currentGame->getPhrase()->addPhraseToDisplay(); ?>
+            <?php echo $currentGame->getPhrase()->addPhraseToDisplay(); ?>
         </div>
         <!-- Display the keyboard -->
         <div id="qwerty" class="section">
