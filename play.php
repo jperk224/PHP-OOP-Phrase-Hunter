@@ -34,13 +34,23 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
 3. if wrong -> you're wrong
 4. render score
 */
-    $userGuess = filterGetString("userGuess");
+    $userGuess = strtoupper(filterGetString("userGuess"));
+    $currentGameObject->getPhrase()->addGuess($userGuess);
     $returnKeyboard = $currentGameObject->displayKeyboard();    // TODO: this needs to render a specific keyboard based on inputs
-    $responseJSON = "{
-        \"userGuess\" : $userGuess,
-        \"keyboard\" : $returnKeyboard
-    }";
-    echo $responseJSON;
+    var_dump($currentGameObject->getPhrase()->getSelected()); 
+
+    // overwrite the session objects so the user guesses persist in the selected array
+    $_SESSION["currentPhraseObject"] = serialize($currentPhraseObject);
+    $_SESSION["currentGameObject"] = serialize($currentGameObject);
+    
+    // JSON to return
+    // $responseJSON = "{
+    //     \"userGuess\" : $userGuess,
+    //     \"keyboard\" : $returnKeyboard
+    // }";
+    
+    
+    //echo $responseJSON;
 } else {    // It's not an AJAX request, we're starting a new game, render a new page
 
     require_once(__DIR__ . './views/header.php');

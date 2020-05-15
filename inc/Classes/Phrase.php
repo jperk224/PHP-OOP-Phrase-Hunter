@@ -78,7 +78,7 @@ class Phrase {
     /**
      * Add player guesses to the selected array
      */
-    public function addSelected($guess) {
+    public function addGuess($guess) {
         $guess = strtoupper($guess);
         $this->selected[] = $guess;
         return;
