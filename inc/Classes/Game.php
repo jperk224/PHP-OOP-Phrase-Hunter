@@ -87,6 +87,21 @@ class Game {
      * gameOver(): this method displays one message if the player wins and another message if they lose. 
      * It returns false if the game has not been won or lost.
      */
+    public function gameOver() {
+        if($this->checkForWin()) {  // if true you won
+            // echo "WINNER! RENDER WINNING MODAL!!!";
+            return;
+        }
+        else if($this->checkForLose()) { //if true you lost
+            // echo "LOSER!";
+            return;
+        }
+        else {
+            // echo "NOTHING YET!!";
+            return false;
+        }
+    }
+
 
     /**
      * displayKeyboard(): Create a onscreen keyboard form.  
@@ -153,7 +168,7 @@ class Game {
             $scoreboardHtml .= '</ol>';
         }
         else {  // Selected array is not empty, we're in a game, this is handling AJAX, so return JSON
-            $scoreboardHtml .= '"<ol>';
+            $scoreboardHtml .= '<ol>';
             // render the remaining lives first
             for($i = 0; $i < $this->getLives(); $i++) {
                 $scoreboardHtml .= '<li class=\"tries\"><img src=\"images/liveHeart.png\" height=\"35px\" widght=\"30px\"></li>';
@@ -162,7 +177,7 @@ class Game {
             for($i = 0; $i < ($this->getInitialLives() - $this->getLives()); $i++) {
                 $scoreboardHtml .= '<li class=\"tries\"><img src=\"images/lostHeart.png\" height=\"35px\" widght=\"30px\"></li>';
             }
-            $scoreboardHtml .= '</ol>"';
+            $scoreboardHtml .= '</ol>';
         }
         return $scoreboardHtml;
     }

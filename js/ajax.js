@@ -10,11 +10,15 @@ function submitUserGuess() {
   // callback function to handle server response
   xhr.onreadystatechange = function (e) {
     if (this.readyState === 4 && this.status === 200) {
-      console.log(xhr.responseText);
-      // var gameInfo = JSON.parse(xhr.responseText);
-      // console.log(gameInfo);
-      // document.getElementById('phraseDisplay').innerHTML = gameInfo["phrase"];
-      // document.getElementById('qwerty').innerHTML = gameInfo["keyboard"];
+      // console.log(xhr.responseText);
+      var gameInfo = JSON.parse(xhr.responseText);
+      console.log(gameInfo);
+      document.getElementById('scoreboard').innerHTML = gameInfo["livesHTML"];
+      document.getElementById('lives-count').innerHTML = "Remaining Lives: " + gameInfo["livesRemain"];
+      document.getElementById('qwerty').innerHTML = gameInfo["keyboard"];
+      document.getElementById('phraseDisplay').innerHTML = gameInfo["phrase"];
+      document.getElementById('qwerty').innerHTML = gameInfo["keyboard"];
+
     }
   };
 

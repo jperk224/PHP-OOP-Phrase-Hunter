@@ -26,8 +26,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     }
     $currentGameObject->getPhrase()->addGuess($userGuess);
 
-    // run check for win after lives check and check for loose
-
+    $gameOver = $currentGameObject->gameOver();
     $returnLives = $currentGameObject->getLives();
     $returnScoreboard = $currentGameObject->displayScore();
     $returnPhrase = $currentGameObject->getPhrase()->addPhraseToDisplay();
@@ -43,7 +42,8 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
         \"keyboard\" : \"$returnKeyboard\",
         \"phrase\" : \"$returnPhrase\",
         \"livesHTML\" : \"$returnScoreboard\",
-        \"livesRemain\" : \"$returnLives\"
+        \"livesRemain\" : \"$returnLives\",
+        \"gameOver\" : \"$gameOver\"
     }";
 
     echo $responseJSON;
