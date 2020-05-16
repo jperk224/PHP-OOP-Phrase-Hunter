@@ -21,12 +21,15 @@ $difficulty = '';
 if (isset($_GET["userGuess"])) {     // AJAX handling
 
     $userGuess = strtoupper(filterGetString("userGuess"));
+    if(!($currentGameObject->getPhrase()->checkLetter($userGuess))) {   // guess is wrong, lose a life
+        $currentGameObject->setLives($currentGameObject->getLives() - 1);
+    }
     $currentGameObject->getPhrase()->addGuess($userGuess);
-    var_dump($currentGameObject->getPhrase()->getSelected());
-    var_dump($currentGameObject->checkForLose());
 
     // run check for win after lives check and check for loose
 
+    $returnLives = $currentGameObject->getLives();
+    $returnScoreboard = $currentGameObject->displayScore();
     $returnPhrase = $currentGameObject->getPhrase()->addPhraseToDisplay();
     $returnKeyboard = $currentGameObject->displayKeyboard();
 
@@ -38,7 +41,9 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     $responseJSON = "{
         \"userGuess\" : \"$userGuess\",
         \"keyboard\" : \"$returnKeyboard\",
-        \"phrase\" : \"$returnPhrase\"
+        \"phrase\" : \"$returnPhrase\",
+        \"livesHTML\" : \"$returnScoreboard\",
+        \"livesRemain\" : \"$returnLives\"
     }";
 
     echo $responseJSON;
@@ -111,7 +116,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     <article>
         <div class="game-banner">
             <h3 id="game-header">Player Name: <?php echo $playerName; ?></h3>
-            <h3 id="lives-count">Remaining Guesses: <?php echo $numberOfGuesses; ?></h3>
+            <h3 id="lives-count">Remaining Lives: <?php echo $numberOfGuesses; ?></h3>
         </div>
         <div id="scoreboard" class="section">
             <?php echo $currentGame->displayScore(); ?>
