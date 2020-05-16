@@ -11,6 +11,7 @@ class Game {
     // private access modifiers promote encapsulation
     private $phrase;                    // an instance of the Phrase class to use with the game
     private $lives;                     // an integer for the number of wrong chances to guess the phrase
+    private $initialLives;              // the initial Lives set at the beginning of the game 
 
     /**
      * Class constructor.
@@ -22,6 +23,7 @@ class Game {
         $this->phrase = $phrase;
         $this->lives = 5;               // current rules, user has 5 wrong attempts before 'game over'
                                         // this is the default if not explicitly set
+        $this->initialLives = $this->lives;
     }
 
     // getters
@@ -34,6 +36,10 @@ class Game {
         return $this->lives;
     }
 
+    public function getInitialLives() {
+        return $this->initialLives;
+    }
+
     // setters
 
     public function setPhrase($phrase) {
@@ -42,6 +48,10 @@ class Game {
 
     public function setLives($lives) {
         $this->lives = $lives;
+    }
+
+    public function setInitialLives($lives) {
+        $this->initialLives = $lives;
     }
 
     // other methods
@@ -129,9 +139,31 @@ class Game {
 
 
     /**
-     * displayScore(): Display the number of guesses available. 
-     * See the example_html/scoreboard.txt file for an example of what the render HTML for a scoreboard should look like. 
-     * Return string HTML of Scoreboard.
+     * displayScore(): Display the number of guesses available.
+     * heigh and width attributes are applied as inline attributes to ovverride img size 
      */
-
+    public function displayScore() {
+        $scoreboardHtml = '';
+        // if the selected array is empty the game has not started, render a fresh scoreboard
+        if(count($this->getPhrase()->getSelected()) <= 0) {
+            $scoreboardHtml .= '<ol>';
+            for($i = 0; $i < $this->getLives(); $i++) {
+                $scoreboardHtml .= '<li class="tries"><img src="images/liveHeart.png" height="35px" widght="30px"></li>';
+            }
+            $scoreboardHtml .= '</ol>';
+        }
+        else {  // Selected array is not empty, we're in a game, this is handling AJAX, so return JSON
+            $scoreboardHtml .= '"<ol>';
+            // render the remaining lives first
+            for($i = 0; $i < $this->getLives(); $i++) {
+                $scoreboardHtml .= '<li class=\"tries\"><img src=\"images/liveHeart.png\" height=\"35px\" widght=\"30px\"></li>';
+            }
+            // render lost lives lost - difference between initial lives and remaining lives
+            for($i = 0; $i < ($this->getInitialLives() - $this->getLives()); $i++) {
+                $scoreboardHtml .= '<li class=\"tries\"><img src=\"images/lostHeart.png\" height=\"35px\" widght=\"30px\"></li>';
+            }
+            $scoreboardHtml .= '</ol>"';
+        }
+        return $scoreboardHtml;
+    }
 }

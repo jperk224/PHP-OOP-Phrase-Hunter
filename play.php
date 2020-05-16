@@ -40,10 +40,9 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
         \"keyboard\" : \"$returnKeyboard\",
         \"phrase\" : \"$returnPhrase\"
     }";
-    
+
     echo $responseJSON;
-} 
-else {    // It's not an AJAX request, we're starting a new game, render a new page
+} else {    // It's not an AJAX request, we're starting a new game, render a new page
 
     require_once(__DIR__ . './views/header.php');
 
@@ -86,7 +85,8 @@ else {    // It's not an AJAX request, we're starting a new game, render a new p
 
     $gamePhrase = new Phrase($gamePhrases, $phrase);
     $currentGame = new Game($gamePhrase);
-    $currentGame->setLives($numberOfGuesses);       // explicitly set number of guesses so easily changed in config.php
+    $currentGame->setLives($numberOfGuesses);           // explicitly set number of guesses so easily changed in config.php
+    $currentGame->setInitialLives($numberOfGuesses);    // needed to render lives lost, see Game::displayScore()
 
     // set session variables for these pieces so they can be referenced in the php file handling the AJAX request
     $_SESSION["currentPhraseObject"] = serialize($currentGame->getPhrase());
@@ -113,6 +113,9 @@ else {    // It's not an AJAX request, we're starting a new game, render a new p
             <h3 id="game-header">Player Name: <?php echo $playerName; ?></h3>
             <h3 id="lives-count">Remaining Guesses: <?php echo $numberOfGuesses; ?></h3>
         </div>
+        <div id="scoreboard" class="section">
+            <?php echo $currentGame->displayScore(); ?>
+        </div>
     </article>
     <main>
         <?php
@@ -126,7 +129,7 @@ else {    // It's not an AJAX request, we're starting a new game, render a new p
         </div>
         <!-- Display the keyboard -->
         <div id="qwerty" class="section">
-    <?php echo $currentGame->displayKeyboard(); ?>
+            <?php echo $currentGame->displayKeyboard(); ?>
         </div>
         <!-- end keyboard display -->
     </main>
