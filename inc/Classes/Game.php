@@ -99,7 +99,7 @@ class Game {
         
         // appennd the rest of the modal html
         $endingHTML .= '<button class=\"form-buttons play-again\">Play Again</button>';
-        $endingHTML .= '<button class=\"form-buttons formaction=\"index.php\">Go Home</button>';
+        $endingHTML .= '<button class=\"form-buttons onclick=\"location.href=\'index.php\';\">Go Home</button>';
         $endingHTML .= '</div>';
 
         if($this->checkForWin() || $this->checkForLose()) { // you either won or lost, so render a modal

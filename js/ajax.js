@@ -19,6 +19,11 @@ function submitUserGuess() {
       document.getElementById('phraseDisplay').innerHTML = gameInfo["phrase"];
       document.getElementById('qwerty').innerHTML = gameInfo["keyboard"];
 
+      // if gameOver is not an empty string, the game is over, render the modal
+      if(!(gameInfo["gameOver"] === "")) {
+        document.getElementById('game-over').innerHTML = gameInfo["gameOver"];
+        document.getElementById('game-over').style.display = 'block';
+      }
     }
   };
 
