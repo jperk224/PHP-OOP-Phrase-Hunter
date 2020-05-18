@@ -48,7 +48,7 @@ function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
                 else {
                     echo '<button class="form-buttons" id="close-player-form">Cancel</button>';
                 }
-    echo    '<input type="hidden" name="newGame" value="1">';            
+    //  echo    '<input type="hidden" name="newGame" value="1">'; //TODO: I don't think this is needed
 	echo	'</form>
 		    </div>';
 }

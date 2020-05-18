@@ -64,3 +64,14 @@ $(".modal-container").click(function(e) {
         $("#hint-modal").hide();
     }
 });
+
+// if the user clicks 'play again' prevent redirect home and render the difficulty selection form\
+// Buttons don't exist at page load and are rendered dynamically via AJAX
+// document.on is needed to append an event listener to dynamic content
+// (https://stackoverflow.com/questions/27870794/jquery-click-event-preventdefault-not-working/27870969)
+$(document).on('click','#play-again',function(e){
+    e.preventDefault();
+    $('#game-over').hide();
+    $("#player-info").show();
+    return false;
+});
