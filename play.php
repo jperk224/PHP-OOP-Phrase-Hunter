@@ -155,6 +155,9 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
         <?php renderHint($source) ?>;
     </div>
 
+    <!-- End of Game Modal -->
+    <div id="game-over" class="modal-container"></div>
+
 <?php
 
     require_once(__DIR__ . './views/footer.php');

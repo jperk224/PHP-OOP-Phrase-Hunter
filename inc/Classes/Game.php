@@ -88,20 +88,27 @@ class Game {
      * It returns false if the game has not been won or lost.
      */
     public function gameOver() {
+        $endingHTML = '<div class=\"modal-content\">';    // open the end-of game modal, populate it based on win/loss
         if($this->checkForWin()) {  // if true you won
-            // echo "WINNER! RENDER WINNING MODAL!!!";
-            return;
+            $endingHTML .= '<h4>Winner!!!</h4>';
         }
-        else if($this->checkForLose()) { //if true you lost
-            // echo "LOSER!";
-            return;
+        
+        if($this->checkForLose()) { //if true you lost
+            $endingHTML .= '<h4>Better Luck Next Time!</h4>';
+        }
+        
+        // appennd the rest of the modal html
+        $endingHTML .= '<button class=\"form-buttons play-again\">Play Again</button>';
+        $endingHTML .= '<button class=\"form-buttons formaction=\"index.php\">Go Home</button>';
+        $endingHTML .= '</div>';
+
+        if($this->checkForWin() || $this->checkForLose()) { // you either won or lost, so render a modal
+            return $endingHTML;
         }
         else {
-            // echo "NOTHING YET!!";
             return false;
         }
     }
-
 
     /**
      * displayKeyboard(): Create a onscreen keyboard form.  
