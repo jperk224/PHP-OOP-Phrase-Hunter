@@ -97,6 +97,10 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     $_SESSION["currentPhraseObject"] = serialize($currentGame->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGame);
 
+    //TODO: Did these work?
+    $_SESSION["playerName"] = $playerName;
+    $_SESSION["difficulty"] = $difficulty;
+
 ?>
 
     <header>
