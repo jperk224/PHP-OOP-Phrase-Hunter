@@ -15,4 +15,15 @@
 	<script src="js/ajax.js"></script>
 </head>
 
-<body>
+<?php 
+
+if(isset($page)) {
+	if($page == 'play') {
+		echo '<body class="alt-gradient">';
+	}
+	else {
+		echo '<body>';
+	}
+}
+
+?>

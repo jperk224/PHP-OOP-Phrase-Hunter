@@ -16,7 +16,7 @@
 ### CSS Edits
 
 * Body background- add CSS gradient for unique coloring
-* Landing page header- add text shadow for contrast
+* Landing page header and game banner- add text shadow for contrast
 * Form buttons
     * Changed color for improved contrast and flip colors on focus/hover for accessibility
     * Added slight box shadow effects for contrast

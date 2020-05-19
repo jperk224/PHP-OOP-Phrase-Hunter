@@ -1,5 +1,7 @@
 <?php
 
+$page = 'play';
+
 require_once(__DIR__ . '/inc/config.php');
 
 // variables for persistence
