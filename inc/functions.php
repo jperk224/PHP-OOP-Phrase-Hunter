@@ -28,19 +28,22 @@ function renderRules($numberOfGuesses) {
 // render the player form for name and difficulty
 function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
     echo '<div class="modal-content">
-			<form action="play.php" method="get">
-				<label for="playerName">Please Enter Your Name:</label>
+            <form action="play.php" method="get">
+                <div class="form-input-wrapper">
+				<label for="playerName">Name:</label>
 				<input type="text" id="playerName" placeholder="Joe Smith" name="playerName"';
 				if(!empty($playerName)) {
 					echo 'value="' . $playerName .'"';		// player name persistence 
 				} 
 	echo		'<br>
-				<label for="difficulty">Please Select Your Difficulty Level:</label>
+				<label for="difficulty">Difficulty Level:</label>
                 <select id="difficulty" name="difficulty">
                     <option value="random">Random</option>';    // This is first as a workaround for dropdown persistence
 					// difficulty level form persistence via $difficulty argument
                     renderDifficulty($gamePhrases, $diffculty); 
-	echo		'</select><br>
+    echo		'</select><br>
+                </div>
+                <div class="form-button-wrapper">
                 <button class="form-buttons">Let\'s Go!</button>';
                 if($page == "index") {
                     echo '<button class="form-buttons" formaction="index.php">I\'m Not Ready</button>	<!-- go back home -->';
@@ -48,9 +51,9 @@ function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
                 else {
                     echo '<button class="form-buttons" id="close-player-form">Cancel</button>';
                 }
-    //  echo    '<input type="hidden" name="newGame" value="1">'; //TODO: I don't think this is needed
-	echo	'</form>
-		    </div>';
+    echo        '</div>            
+	    	    </form>
+		        </div>';
 }
 
 // render the hint modal
