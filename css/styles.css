@@ -1,6 +1,12 @@
 /* Main styles */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
 
+/* Site color Scheme
+ * Background/Body/Canvas: #FFF and #445069
+ * Main contrast: #694450
+ * Triadic Support: #506944
+ */
+
 /* Variables */
 
 :root { /*html selector with higher specificity */
@@ -11,10 +17,25 @@
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
+
+  /* my colors, TODO: are above still used? */
+  --color-main: #445069;
+  --color-main-light: #D2D2D2;
+  --color-marquee: #FFF;
+
+
+  /****************************************/
+
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --font-size-small: 15px;
   --transition: all .2s ease-in-out;
+}
+
+/***** Body *****/
+
+body {
+  background-image: linear-gradient(var(--color-main), var(--color-main-light));
 }
 
 /***** Header *****/
@@ -120,7 +141,17 @@ button, input[type=submit] {
 
 .form-buttons {
 	width: 150px;
-	margin: 5px auto;
+  margin: 5px auto;
+  background-color: var(--color-neutral);
+  color: #FFF;
+}
+
+/* flip colors on button selection */
+.form-buttons:focus,
+.form-buttons:hover {
+  background-color: #FFF;
+  color: var(--color-neutral);  
+  font-weight: 600;
 }
 
 .main-container {
@@ -168,7 +199,8 @@ button, input[type=submit] {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: var(--color-marquee);
+  text-shadow: 2px 2px 1px #000;
 }
 
 
