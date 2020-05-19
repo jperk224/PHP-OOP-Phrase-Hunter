@@ -2,7 +2,7 @@
 
 ## Unit 4 Project
 
-_Game Show App_
+### Game Show App
 
 * Features mobile-first responsive design to render good UX across varying viewports
 * Uses PHP OOP principles render random phrase puzzles
@@ -11,17 +11,16 @@ _Game Show App_
 * AJAX technology updates game play in real time without full page refreshes
 * Guess correctly and you'll feel pretty good about winning
 * If you lose, just try again!
+* Have Fun!
 
-_Have Fun!_
-
-_CSS Edits_
+### CSS Edits_
 
 * Body background- add CSS gradient for unique coloring
 * Landing page header- add text shadow for contrast
 * Form buttons
-** Changed color for improved contrast and flip colors on focus/hover for accessibility
-** Added slight box shadow effects for contrast
+ * Changed color for improved contrast and flip colors on focus/hover for accessibility
+ * Added slight box shadow effects for contrast
 * Player form
-** Adjusted margins and flex spacing for better alignment (mobile)
+ * Adjusted margins and flex spacing for better alignment (mobile)
 
-### Media Query for varying viewports
+#### Media Query for varying viewports
