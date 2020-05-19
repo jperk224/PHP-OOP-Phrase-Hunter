@@ -13,14 +13,14 @@
 * If you lose, just try again!
 * Have Fun!
 
-### CSS Edits_
+### CSS Edits
 
 * Body background- add CSS gradient for unique coloring
 * Landing page header- add text shadow for contrast
 * Form buttons
- * Changed color for improved contrast and flip colors on focus/hover for accessibility
- * Added slight box shadow effects for contrast
+    * Changed color for improved contrast and flip colors on focus/hover for accessibility
+    * Added slight box shadow effects for contrast
 * Player form
- * Adjusted margins and flex spacing for better alignment (mobile)
+    * Adjusted margins and flex spacing for better alignment (mobile)
 
 #### Media Query for varying viewports
