@@ -60,7 +60,8 @@ header {
   text-align: right;
   position: fixed;
   top: 5px;
-  width: 95%;
+  left: 2%;
+  width: 96%;
   border-radius: 5px;
 }
 
@@ -197,7 +198,7 @@ input[type=text] {
 }
 
 .main-button-wrapper {
-  height: 50px;
+  /* height: 50px; */
 }
 
 .section {
@@ -215,11 +216,16 @@ input[type=text] {
 
 .game-banner {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   font-size: .65em;
   height: 10%;
   color: var(--color-marquee);
   text-shadow: 2px 2px rgba(0,0,0,.2);  /* light shadowing for contrast */
+}
+
+.game-banner h3{
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .tries {
@@ -315,7 +321,8 @@ input[type=text] {
 }
 
 #hint-button {
-  height: 30px;
+  /* height: 30px; */
+  /* margin: auto; */
 }
 
 /* Phrase */
@@ -458,11 +465,52 @@ input[type=text] {
 /***** Tablets *****/
 
 @media screen and (min-width: 768px) {
+  
+/* Navigation */
+.navbar {
+  width: 98%;
+  left: 1%;
+  height: 5%;
+  /* padding-top: 3px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 600;
+}
+
+#hamburger {
+  display: none;
+}
+
+#hamburger-menu {
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.1em;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#hamburger-menu li {
+  margin: auto 50px;
+}
 
 /* Modals */
 .modal-content {
-  width: 70%;
+  width: 60%;
+  margin-top: 25%;
 }  
+
+.form-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* main */
+
+.game-banner h3{
+  font-size: 1.75em;
+}
 
 }
 

@@ -25,3 +25,6 @@
     * Adjusted margins and flex spacing for better alignment (mobile)
 
 #### Media Query for varying viewports
+* Tablet/Full Screen
+    * Remove Hamburger menu and render nav links
+    * Various margin/padding/display adjustments for spacing and alignment
