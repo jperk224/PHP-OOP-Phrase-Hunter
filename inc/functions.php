@@ -61,7 +61,7 @@ function renderHint($definition) {
     echo    '<div class="modal-content" id="phrase-hint">
 		        <span class="close" id="hint-close">&times;</span><br>
 			    <h5>Definition:</h5>
-			    <h5>' . $definition . '</h5>
+			    <h5>' . $definition . '</h5><br>
 			    <button class="form-buttons" id="hint-close-button">Ok!</button>
 		    </div>';
 }
