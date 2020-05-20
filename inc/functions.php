@@ -46,7 +46,7 @@ function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
                 <div class="form-button-wrapper">
                 <button class="form-buttons">Let\'s Go!</button>';
                 if($page == "index") {
-                    echo '<button class="form-buttons" formaction="index.php">I\'m Not Ready</button>	<!-- go back home -->';
+                    echo '<button class="form-buttons" formaction="index.php">Not Ready</button>	<!-- go back home -->';
                 }
                 else {
                     echo '<button class="form-buttons" id="close-player-form">Cancel</button>';
