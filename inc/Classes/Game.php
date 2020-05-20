@@ -89,7 +89,7 @@ class Game {
      */
     public function gameOver() {
         $endingHTML = '<div class=\"modal-content\">';    // open the end-of game modal, populate it based on win/loss
-		$endingHTML = '<form action=\"index.php\" method=\"get\">';
+		$endingHTML .= '<form action=\"index.php\" method=\"get\">';
 
         if($this->checkForWin()) {  // if true you won
             $endingHTML .= '<h4>Winner!!!</h4>';

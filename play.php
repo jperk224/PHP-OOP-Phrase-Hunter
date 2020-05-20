@@ -119,7 +119,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
             <li class="menu-links"><a href="index.php">Home</a></li>
         </ul>
     </nav>
-    <article>
+    <article id="game-hero">
         <div class="game-banner">
             <h3 id="game-header">Player Name: <?php echo $playerName; ?></h3>
             <h3 id="lives-count">Remaining Lives: <?php echo $numberOfGuesses; ?></h3>
