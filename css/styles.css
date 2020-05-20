@@ -102,8 +102,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 15vh;
-  height: 25%;
+  /* margin-top: 15vh; */
+  /* height: 25%; */
 }
 
 #scoreboard {
@@ -114,6 +114,8 @@ body {
 
 main {
   text-align: center;
+  /* position: relative; */
+  /* top: -10vh; */
 }
 
 li, ol, ul {

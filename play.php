@@ -75,16 +75,16 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
             $phrase = $array[array_rand($array)]["phrase"];
         } else if ($difficulty == "hard") {
             $array = $gamePhrases->getAll("3 - hard", "difficulty");
-            // with hard, we need the source for hints
+            // with hard, we need the definition for hints
             $phrase = $array[array_rand($array)];
-            $source = $phrase["source"];
+            $definition = $phrase["definition"];
             $phrase = $phrase["phrase"];
         } else {  // player chose random, pull the entire phrase array and create a random phrase object
             $array = $gamePhrases->getAll();
-            // grab the source if the randomly chosen phrase is hard difficulty
+            // grab the definition if the randomly chosen phrase is hard difficulty
             $phrase = $array[array_rand($array)];
             if ($phrase["difficulty"]  == "3 - hard") {
-                $source = $phrase["source"];
+                $definition = $phrase["definition"];
             }
             $phrase = $phrase["phrase"];
         }
@@ -130,7 +130,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     </article>
     <main>
         <?php
-        if (!empty($source)) {
+        if (!empty($definition)) {
             echo '<div class="main-button-wrapper" id="hint-button"><button class="form-buttons hint">Get Hint</button></div>';
         }
         ?>
@@ -158,7 +158,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
 
     <!-- Hint Modal -->
     <div id="hint-modal" class="modal-container">
-        <?php renderHint($source) ?>;
+        <?php renderHint($definition) ?>;
     </div>
 
     <!-- End of Game Modal -->

@@ -3,7 +3,7 @@
 /**
  * Phrase store for game phrases
  * Taken from a list of the most common English idioms (https://www.ef.edu/english-resources/english-idioms/)
- * and The 100 Most Famous Quotes of All Time (https://blog.hubspot.com/sales/famous-quotes)
+ * and 20 bizarre English idioms and how to explain them (https://globalgraduates.com/articles/20-bizarre-english-idioms-and-how-to-explain-them)
  */
 
 $phrases = [
@@ -91,26 +91,26 @@ $phrases = [
     [
         "phrase" => "A different kettle of fish",
         "difficulty" => "3 - hard",
-        "source" => "John Lennon"
+        "definition" => "Referring to an alternative"
     ],
     [
-        "phrase" => "The way to get started is to quit talking and begin doing",
+        "phrase" => "Cat got your tongue?",
         "difficulty" => "3 - hard",
-        "source" => "Walt Disney"
+        "definition" => "Used to compel someone to speak or to point out their silence"
     ],
-    // [
-    //     "phrase" => "The future belongs to those who believe in the beauty of their dreams",
-    //     "difficulty" => "3 - hard",
-    //     "source" => "Elanor Roosevelt"
-    // ],
-    // [
-    //     "phrase" => "Tell me and I forget. Teach me and I remember. Involve me and I learn",
-    //     "difficulty" => "3 - hard",
-    //     "source" => "Benjamin Franklin"
-    // ],
-    // [
-    //     "phrase" => "In the end, it's not the years in your life that count. It's the life in your years",
-    //     "difficulty" => "3 - hard",
-    //     "source" => "Abraham Lincoln"
-    // ]
+    [
+        "phrase" => "Chew the fat",
+        "difficulty" => "3 - hard",
+        "definition" => "To gossip or make friendly small talk"
+    ],
+    [
+        "phrase" => "Under the weather",
+        "difficulty" => "3 - hard",
+        "definition" => "To feel ill or tired"
+    ],
+    [
+        "phrase" => "A piece of cake",
+        "difficulty" => "3 - hard",
+        "definition" => "It's really easy"
+    ],
 ];

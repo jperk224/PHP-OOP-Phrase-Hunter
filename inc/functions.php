@@ -57,11 +57,11 @@ function renderPlayerForm($playerName, $gamePhrases, $diffculty, $page=null) {
 }
 
 // render the hint modal
-function renderHint($source) {
+function renderHint($definition) {
     echo    '<div class="modal-content" id="phrase-hint">
 		        <span class="close" id="hint-close">&times;</span><br>
-			    <h5>Source:</h5>
-			    <h5>' . $source . '</h5>
+			    <h5>Definition:</h5>
+			    <h5>' . $definition . '</h5>
 			    <button class="form-buttons" id="hint-close-button">Ok!</button>
 		    </div>';
 }
