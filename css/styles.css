@@ -7,22 +7,18 @@
  * Triadic Support: #506944
  */
 
-/* Variables */
+/* CSS Variables */
 
 :root { /*html selector with higher specificity */
   --color-win: #78CF82;
-  --color-lose: #D94545;
+  --color-lose: #F0B2B2;
   --color-start: #5b85b7;
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
-
-  /* my colors, TODO: are above still used? */
-  --color-main: #445069;
-  --color-main-light: #D2D2D2;
   --color-marquee: #FFF;
-
+  --color-triadic-support: #506944;
 
   /****************************************/
 
@@ -35,11 +31,11 @@
 /***** Body *****/
 
 body {
-  background-image: linear-gradient(var(--color-main), var(--color-main-light));
+  background-image: linear-gradient(var(--color-neutral), var(--color-neutral-light));
 }
 
 .alt-gradient {
-  background-image: linear-gradient(to bottom left, var(--color-main-light), var(--color-main));
+  background-image: linear-gradient(to bottom left, var(--color-neutral-light), var(--color-neutral));
 }
 
 /***** Header *****/
@@ -301,10 +297,11 @@ input[type=text] {
   width: 25px;
   /* padding: 5px 1px 0 1px; */
   margin-right: 1px;
-  color: var(--color-neutral);
+  color: #FFF;
   background: var(--color-neutral-light);
   border-radius: 5px;
   text-align: center;
+  background-color: var(--color-neutral);
 }
 
 .space {
@@ -343,8 +340,15 @@ input[type=text] {
 .key {
   font-size: .7em;
   height: 1rem;
-  width: 1.75rem;
+  width: 1.65rem;
   margin: 1px;
+  font-weight: 700;
+}
+
+.key:focus,
+.key:hover {
+  background-color: var(--color-keys);
+  color: var(--color-keys-light);
 }
 
 .chosen {

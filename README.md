@@ -15,6 +15,7 @@
 
 ### CSS Edits
 
+* General coloar scheme changes for different look/feel and accessibility contrast
 * Body background- add CSS gradient for unique coloring
 * Landing page header and game banner- add text shadow for contrast
 * Form buttons
