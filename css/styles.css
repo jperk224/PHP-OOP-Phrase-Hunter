@@ -514,6 +514,11 @@ input[type=text] {
   justify-content: space-between;
 }
 
+.form-buttons {
+  margin-left: 5px;
+  margin-right: 5px;  
+}
+
 /* main */
 
 .game-banner h3{
@@ -547,6 +552,7 @@ input[type=text] {
 input[type=text], select {
   width: 80px;
   margin-left: 5px;
+  padding-left: 5px;
 }
 
 }
@@ -559,6 +565,27 @@ input[type=text], select {
 .modal-content {
   margin: 10% auto; /* 25% from the top and centered */
   width: 60%;
+}
+
+#player-info .modal-content {
+  max-width: 600px;
+}
+
+/* Main */
+
+.form-input-wrapper {
+  justify-content: center;
+}
+
+.form-button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+input[type=text], select {
+  width: 125px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 }
