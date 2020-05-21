@@ -567,7 +567,9 @@ input[type=text], select {
   width: 60%;
 }
 
-#player-info .modal-content {
+#player-info .modal-content,
+#game-over .modal-content,
+#hint-modal .modal-content {
   max-width: 600px;
 }
 
