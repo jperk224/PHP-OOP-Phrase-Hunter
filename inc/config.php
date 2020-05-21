@@ -12,7 +12,7 @@ require_once(__DIR__ . '/functions.php');
  * include this file on any page or a shared header
  */
 
-// Start the session --> enables session variable functionality
+// Start the session --> enables session variables
 session_start();
 
 /**
@@ -48,5 +48,5 @@ function autoloader($className) {
 
  spl_autoload_register("autoloader");
 
-$gamePhrases = new ArrayRepo($phrases);
-$numberOfGuesses = 5;
+$gamePhrases = new ArrayRepo($phrases); // the Phrase datastore for the game
+$numberOfGuesses = 5;   // default game lives is 5 per requirements

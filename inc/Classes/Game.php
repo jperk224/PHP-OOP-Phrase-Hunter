@@ -62,15 +62,15 @@ class Game {
     public function checkForWin() {
         $phrase = $this->getPhrase()->getCurrentPhrase();
         for($i = 0; $i < strlen($phrase); $i++) {
-            if ($phrase[$i] >= "A" && $phrase[$i] <= "Z") {
+            if ($phrase[$i] >= "A" && $phrase[$i] <= "Z") {     // only concerned with letters as user can't enter special chars
                 if(!(in_array($phrase[$i], array_keys($this->getPhrase()->getSelected())))) {
-                    return false;   // exit early if there's a letter in the phrase not yet selected
+                    return false;   // exit early if there's a letter in the phrase not yet selected, it mean no win yet
                 }
             } else {
                 continue;
             }
         }
-        return true;    // if you got here, all letters have been selected
+        return true;    // if you got here, all letters have been selected, so user has won
     }
 
     /**
@@ -99,7 +99,7 @@ class Game {
             $endingHTML .= '<h4>Better Luck Next Time!</h4>';
         }
         
-        // appennd the rest of the modal html
+        // append the rest of the modal html
         $endingHTML .= '<button class=\"form-buttons\" id=\"play-again\">Play Again</button>';
         $endingHTML .= '<button class=\"form-buttons\">Go Home</button>';
         $endingHTML .= '</form>';
@@ -114,11 +114,12 @@ class Game {
     }
 
     /**
-     * displayKeyboard(): Create a onscreen keyboard form.  
+     * displayKeyboard(): Create an onscreen keyboard form.  
      */
     public function displayKeyboard()
     {
         // Note: There's a bit of duplicated code here needed to handle AJAX requests cleanly
+        // TODO: Future refactor potential
         $keyboardHTML = '';
         $keyboardArray = [
             ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
@@ -128,8 +129,8 @@ class Game {
 
         $arr = $this->getPhrase()->getSelected();
 
-        if (count($arr) > 0) {
-            foreach ($keyboardArray as $keyrow) { // guesses already exist in the 'selected' array, its not a new game, return JSON format
+        if (count($arr) > 0) { // guesses already exist in the 'selected' array, its not a new game, return JSON-friendly format
+            foreach ($keyboardArray as $keyrow) { 
                 $keyboardHTML .= '<div class=\"keyrow\">';
                 foreach ($keyrow as $key) {
                     $key = strtoupper($key);
@@ -165,7 +166,7 @@ class Game {
 
     /**
      * displayScore(): Display the number of guesses available.
-     * heigh and width attributes are applied as inline attributes to ovverride img size 
+     * heigh and width attributes are applied as inline attributes to override img size 
      */
     public function displayScore() {
         $scoreboardHtml = '';
@@ -177,7 +178,7 @@ class Game {
             }
             $scoreboardHtml .= '</ol>';
         }
-        else {  // Selected array is not empty, we're in a game, this is handling AJAX, so return JSON
+        else {  // Selected array is not empty, we're in a game, this is handling AJAX, so return JSON-friendly format
             $scoreboardHtml .= '<ol>';
             // render the remaining lives first
             for($i = 0; $i < $this->getLives(); $i++) {

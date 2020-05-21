@@ -28,12 +28,12 @@ class ArrayRepo implements RepoInterface {
         if(isset($value)) {        // return elements holding the value chosen
             $array = array();           
             foreach($this->dataStore as $key => $arrayElement) {
-                if(isset($field)) {
+                if(isset($field)) {     // query is on a two-dimensional array
                     if($arrayElement[$field] == $value) {
                         $array[] = $this->dataStore[$key];
                     }
                 }
-                else {
+                else {      // query is on a one-dimensional array
                     if($arrayElement == $value) {
                         $array[] = $this->dataStore[$key];
                     }
@@ -42,20 +42,21 @@ class ArrayRepo implements RepoInterface {
             return $array;
         }
         else {
-            return $this->dataStore;
+            return $this->dataStore;    // no arguments passed- return the entire array
         }
     }
 
     /**
      * Retrieve a specific result set from the array
      * Returns first matching record value
-     * @param $array The array source of your data
-     * @param $id Data field value to filter your result set on
+     * @param $value The data field value to filter your result set on
      * @param $field The data field to filter your result set on 
      */
 
     public function getRecord($value, $field = null) {
-
+        // the getAll returns an array of elements matching all values (and fields) passed
+        // in the context of this game, we only want the first one returned
+        // to get a phrase for the game puzzle
         return $this->getAll($value, $field)[0];
 
     }

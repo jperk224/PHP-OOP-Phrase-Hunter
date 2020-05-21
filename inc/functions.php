@@ -87,6 +87,7 @@ function renderDifficulty(ArrayRepo $phrases, $selection = null) {
         $challengeArray[] = $challenge;
     }
     // echo out the entires as option fields
+    // use 'selected' attribute for form persistence
     foreach($challengeArray as $challenge) {
         if($challenge == $selection) {
             echo '<option value="'. $challenge . '" selected>' . ucfirst($challenge) . '</option>';

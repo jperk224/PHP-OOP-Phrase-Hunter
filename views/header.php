@@ -19,7 +19,7 @@
 
 if(isset($page)) {
 	if($page == 'play') {
-		echo '<body class="alt-gradient">';
+		echo '<body class="alt-gradient">';	// swap the background color slightly on the page play for better contrast/accessibility
 	}
 	else {
 		echo '<body>';

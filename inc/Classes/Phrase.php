@@ -18,8 +18,8 @@ class Phrase {
      * If the phrase is not passed in, a random phrase is selected.
      * Converts phrases to all upper case to render 'Wheel of Fortune' style
      * and eliminate case-sensitivity for user guesses.
-     * @param $phraseArray The array of phrases to select from randomly 
-     * (implementing this way is cleaner than housing the entire phrase array in the class)
+     * @param $phrases The array of phrases to select from randomly 
+     * (implementing in this manner is cleaner than housing the entire phrase array in the class)
      * @param $phrase The phrase for the puzzle (optional)
      * @param $selected The array of user guesses (optional)
      */
@@ -69,6 +69,8 @@ class Phrase {
 
     /**
      * Turn the phrase into an array to render in the UI
+     * Each word in the phrase it its own string element in the array
+     * Each string is iterated through in addPhraseToDisplay()
      */
     public function splitPhrase() {
         return explode(" ", $this->currentPhrase);
@@ -76,6 +78,8 @@ class Phrase {
 
     /**
      * Add player guesses to the selected array
+     * Creates an associative array
+     * key is user guess, value is true/false based on whether its in the phrase
      */
     public function addGuess($guess) {
         $guess = strtoupper($guess);
@@ -91,7 +95,7 @@ class Phrase {
     {
         $phraseHTML = '';
         $arr = $this->getSelected();
-        if(count($arr) > 0) {
+        if(count($arr) > 0) { // it's not a new game, guesses have been made, return JSON-friendly format
             foreach ($this->splitPhrase() as $word) {
                 $phraseHTML .= '<div class=\"phrase-word\">';
                 for ($i = 0; $i < strlen($word); $i++) {
@@ -103,21 +107,21 @@ class Phrase {
                             $phraseHTML .= '<li class=\"letter hide\">' . $word[$i] . '</li>'; 
                         } 
                     } else {
-                        $phraseHTML .= '<li class=\"letter\">' . $word[$i] . '</li>';
+                        $phraseHTML .= '<li class=\"letter\">' . $word[$i] . '</li>'; // it's a special character so render it immediately
                     }
                 }
-                $phraseHTML .= '<li class=\"space\"></li>';
+                $phraseHTML .= '<li class=\"space\"></li>'; // render spaces w/o character boxes per requirements
                 $phraseHTML .= '</div>';
             }
         }
-        else {  // no guesses have been made, it's a new game, no check against selected or JSON formatting needed
+        else {  // no guesses have been made, it's a new game, no check against selected or JSON friendly formatting needed
             foreach ($this->splitPhrase() as $word) {
                 $phraseHTML .= '<div class="phrase-word">';
                 for ($i = 0; $i < strlen($word); $i++) {
                     if ($word[$i] >= "A" && $word[$i] <= "Z") {
                         $phraseHTML .= '<li class="letter hide">' . $word[$i] . '</li>';
                     } else {
-                        $phraseHTML .= '<li class="letter">' . $word[$i] . '</li>';
+                        $phraseHTML .= '<li class="letter">' . $word[$i] . '</li>';     // special characters don't get hidden
                     }
                 }
                 $phraseHTML .= '<li class="space"></li>';

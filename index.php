@@ -7,7 +7,6 @@ require_once(__DIR__ . './views/header.php');
 $playerName = '';
 $difficulty = '';
 
-//TODO: these were changed from $_GET to $_SESSION, did they work?
 if(isset($_GET["playerName"])) {
 	$playerName = filterGetString("playerName");
 	$_SESSION["playerName"] = $playerName;
@@ -47,27 +46,6 @@ else if(isset($_SESSION["difficulty"])) {
 	<!-- Player Form - enter name and difficulty level -->
     <div id="player-info" class="modal-container">
 		<?php renderPlayerForm($playerName, $gamePhrases, $difficulty, "index"); ?>	
-		<!-- <div class="modal-content">
-			<form action="play.php" method="get">
-				<label for="playerName">Please Enter Your Name:</label>
-				<input type="text" id="playerName" placeholder="Joe Smith" name="playerName"
-				<?php 
-				// if(!empty($playerName)) {
-					// echo 'value="' . $playerName .'"';		// player name persistence 
-				// } 
-				?>><br>
-				<label for="difficulty">Please Select Your Difficulty Level:</label>
-				<select id="difficulty" name="difficulty">
-					<option value="random">Random</option>
-					<?php 
-					// difficulty level form persistence via $difficulty argument
-					// renderDifficulty($gamePhrases, $diffculty); 
-					?>	
-				</select><br>
-				<button class="form-buttons">Let's Go!</button>
-				<button class="form-buttons" formaction="index.php">I'm Not Ready</button>	<!-- go back home -->
-			<!-- </form> -->
-		<!-- </div> -->
     </div>
 </main>
 

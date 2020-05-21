@@ -5,8 +5,9 @@ $page = 'play';
 require_once(__DIR__ . '/inc/config.php');
 
 // variables for persistence
+// we're grabbing objects stored in session variables to use in the AJAX portion
 if (isset($_SESSION["currentPhraseObject"])) {
-    $currentPhraseObject = unserialize($_SESSION["currentPhraseObject"]);
+    $currentPhraseObject = unserialize($_SESSION["currentPhraseObject"]);   
 } else {
     $currentPhraseObject = '';
 }
@@ -20,7 +21,7 @@ if (isset($_SESSION["currentGameObject"])) {
 $playerName = '';
 $difficulty = '';
 
-if (isset($_GET["userGuess"])) {     // AJAX handling
+if (isset($_GET["userGuess"])) {     // AJAX handling, user has submitted a guess
 
     $userGuess = strtoupper(filterGetString("userGuess"));
     if(!($currentGameObject->getPhrase()->checkLetter($userGuess))) {   // guess is wrong, lose a life
@@ -28,6 +29,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     }
     $currentGameObject->getPhrase()->addGuess($userGuess);
 
+    // Set values/HTML strings to build the JSON response
     $gameOver = $currentGameObject->gameOver();
     $returnLives = $currentGameObject->getLives();
     $returnScoreboard = $currentGameObject->displayScore();
@@ -68,7 +70,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     if (isset($difficulty)) {
         if ($difficulty == "easy") {
             $array = $gamePhrases->getAll("1 - easy", "difficulty");
-            //TODO: if the phrase has already been used, pluck it out before choosing one at random
+            //TODO: Future enhancement- if the phrase has already been used, pluck it out before choosing one at random
             $phrase = $array[array_rand($array)]["phrase"];
         } else if ($difficulty == "medium") {
             $array = $gamePhrases->getAll("2 - medium", "difficulty");
@@ -99,7 +101,6 @@ if (isset($_GET["userGuess"])) {     // AJAX handling
     $_SESSION["currentPhraseObject"] = serialize($currentGame->getPhrase());
     $_SESSION["currentGameObject"] = serialize($currentGame);
 
-    //TODO: Did these work?
     $_SESSION["playerName"] = $playerName;
     $_SESSION["difficulty"] = $difficulty;
 
