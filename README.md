@@ -5,7 +5,7 @@
 ### Game Show App
 
 * Features mobile-first responsive design to render good UX across varying viewports
-* Uses PHP OOP principles render random phrase puzzles
+* Uses PHP OOP principles to render random phrase puzzles
 * Features modal overlays to display rules, select puzzle difficulty and render winning/losing notifications
 * Session variables maintain player name and puzzle difficulty persistence
 * AJAX technology updates game play in real time without full page refreshes
@@ -16,8 +16,8 @@
 ### CSS Edits
 
 * General coloar scheme changes for different look/feel and accessibility contrast
-* Body background- add CSS gradient for unique coloring
-* Landing page header and game banner- add text shadow for contrast
+* Body background- added CSS gradient for unique coloring
+* Landing page header and game banner- added text shadow for contrast
 * Form buttons
     * Changed color for improved contrast and flip colors on focus/hover for accessibility
     * Added slight box shadow effects for contrast
@@ -26,7 +26,7 @@
 
 #### Media Query for varying viewports
 * Tablet/Full Screen
-    * Remove Hamburger menu and render nav links
+    * Remove Hamburger menu and render full nav links
     * Various margin/padding/display adjustments for spacing and alignment
 
 #### _Summarize the project and what problem it was solving_
@@ -38,7 +38,7 @@ This game can be enhanced in the future by using additonal global variables to t
 I implemented AJAX funcitonality to play the game without continual page refreshes for the bext UX.  I developed data store interfaces that can be leveraged if the puzzle phrase store changes from something other than a PHP array.  I used mobile-first responsive design techniques to render a UI that has consistent look, feel and functionality across varying viewports including mobile, tablet, and full screen.
 
 #### _Where could you enhance your code? How would these improvements make your code more efficient, secure, and so on?_
-Some of the funcitons are built with branching that build the HTML differently based on whether its responding to an intial page GET or an AJAX request.  The led to some duplicate lines in the function.  These could be refactored to better reduce or eliminate duplication.
+Some of the functions are built with branching that build the HTML differently based on whether its responding to an intial page GET or an AJAX request.  The led to some duplicate lines in the function.  These could be refactored to better reduce or eliminate duplication.
 
 #### _Did you find writing any piece of this code challenging, and how did you overcome this?_
 Building the AJAX functionality was the most difficult task for this project.  I had to break each step down repeatedly and test at a near unit-test-like level, while logging output to the console to validate results and expectations.
