@@ -1,6 +1,6 @@
 // ajax code for user guesses/puzzle refreshes
 
-function submitUserGuess() {
+function submitUserGuess(guess = '') {  // guess param is optional, only used for keypress event
   
     var target = event.target;
   
@@ -29,7 +29,46 @@ function submitUserGuess() {
 
   // open and send the request with the user guess in the query string
   // xhr.open("POST", "play.php", true);
-  xhr.open("GET", "play.php?userGuess=" + target.innerHTML, true);
+  if(guess !== '') {
+    var urlAppend = encodeURIComponent(guess);
+  }
+  else {
+    var urlAppend = encodeURIComponent(target.innerHTML);
+  }
+  xhr.open("GET", "play.php?userGuess=" + urlAppend, true);
   xhr.send();
 
+}
+
+// initialte ajax request for keypress event
+function submitUserGuessKeypress(event) {
+
+var eventKeyCode = event.keyCode;
+var eventString = String.fromCharCode(eventKeyCode).toUpperCase();
+var keys = document.getElementsByClassName('key');
+var submitGuess = true;  // assume the guess will be submitted
+
+if(eventString >= 'A' && eventString <= 'Z') {
+  // check whether the key is already disabled
+ for(var i = 0; i < keys.length; i++) {
+    if(keys[i].innerHTML == eventString) {
+      if(keys[i].disabled) {
+        submitGuess = false;
+      }
+    } 
+  } 
+}
+else {
+  submitGuess = false;
+}
+
+if(submitGuess) {
+  submitUserGuess(eventString);
+}
+
+}
+
+// send ajax request on keypress
+document.onkeypress = function() {
+  submitUserGuessKeypress(event);
 }
