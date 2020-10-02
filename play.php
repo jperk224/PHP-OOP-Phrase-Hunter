@@ -167,6 +167,6 @@ if (isset($_GET["userGuess"])) {     // AJAX handling, user has submitted a gues
 
 <?php
 
-    require_once(__DIR__ . './views/footer.php');
+    require_once(__DIR__ . '/views/footer.php');
 }       // end of non-AJAX branch
 ?>
