@@ -53,7 +53,7 @@ if (isset($_GET["userGuess"])) {     // AJAX handling, user has submitted a gues
     echo $responseJSON;
 } else {    // It's not an AJAX request, we're starting a new game, render a new page
 
-    require_once(__DIR__ . './views/header.php');
+    require_once(__DIR__ . '/views/header.php');
 
     if (isset($_GET["playerName"])) {
         $playerName = filterGetString("playerName");
